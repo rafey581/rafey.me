@@ -1,0 +1,22 @@
+{
+  "name": "Abdul Rafey — Web Developer",
+  "short_name": "rafey.me",
+  "description": "Portfolio of Abdul Rafey, freelance web developer from Sahiwal, Pakistan",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080C10",
+  "theme_color": "#E8B84B",
+  "lang": "en",
+  "scope": "/",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/icons/favicon_64.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "business", "productivity"],
+  "keywords": ["web developer", "Pakistan", "Sahiwal", "freelance", "HTML", "CSS", "JavaScript"]
+}

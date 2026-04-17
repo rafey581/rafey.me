@@ -1,0 +1,40 @@
+# ══════════════════════════════════════
+# robots.txt — rafey.me
+# Tells search engine crawlers what to index
+# ══════════════════════════════════════
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Block access to any private/config folders (add yours here)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Sitemap location — critical for Google
+Sitemap: https://rafey.me/sitemap.xml
+
+# Google-specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing-specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Allow Google Images
+User-agent: Googlebot-Image
+Allow: /assets/images/
+
+# Allow Google to index all assets
+User-agent: Googlebot
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.webp
+Allow: /*.svg
