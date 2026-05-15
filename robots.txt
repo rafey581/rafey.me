@@ -1,0 +1,65 @@
+# ══════════════════════════════════════════════
+# robots.txt — rafey.me
+# Abdul Rafey | Web Developer & Cybersecurity Specialist
+# ══════════════════════════════════════════════
+
+# ── ALL BOTS: Allow full crawl
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /assets/images/
+Allow: /assets/icons/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.woff
+Allow: /*.woff2
+
+# Block private/dev folders
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /cgi-bin/
+
+# ── GOOGLEBOT: Full access + crawl pacing
+User-agent: Googlebot
+Allow: /
+Allow: /assets/
+Crawl-delay: 1
+
+# ── GOOGLEBOT IMAGES: Allow all images
+User-agent: Googlebot-Image
+Allow: /assets/images/
+Allow: /assets/icons/
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.webp
+Allow: /*.svg
+
+# ── BINGBOT
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# ── YANDEX
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+# ── DUCKDUCKGO
+User-agent: DuckDuckBot
+Allow: /
+
+# ── APPLE (for Spotlight)
+User-agent: Applebot
+Allow: /
+
+# ── SITEMAP LOCATION (CRITICAL)
+Sitemap: https://rafey.me/sitemap.xml

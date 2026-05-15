@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xsi:schemaLocation="
+    http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+    http://www.google.com/schemas/sitemap-image/1.1
+    http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <!-- ══════════════════════════════════════════════
+       RAFEY.ME — SITEMAP
+       Abdul Rafey | Web Developer & Cybersecurity Specialist
+       Submit to: Google Search Console & Bing Webmaster Tools
+       URL: https://rafey.me/sitemap.xml
+  ══════════════════════════════════════════════ -->
+
+  <!-- HOME — Priority 1.0 -->
+  <url>
+    <loc>https://rafey.me/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://rafey.me/assets/images/og-cover.jpg</image:loc>
+      <image:title>Abdul Rafey — Web Developer &amp; Cybersecurity Specialist</image:title>
+      <image:caption>Portfolio of Abdul Rafey, Harvard CS50 certified developer from Sahiwal, Pakistan</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://rafey.me/assets/images/personal.png</image:loc>
+      <image:title>Abdul Rafey — Profile Photo</image:title>
+      <image:caption>Abdul Rafey, Web Developer and Cybersecurity Specialist, Sahiwal, Punjab, Pakistan</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ABOUT — Priority 0.9 -->
+  <url>
+    <loc>https://rafey.me/#about</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- CERTIFICATIONS — Priority 0.9 -->
+  <url>
+    <loc>https://rafey.me/#certifications</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SKILLS — Priority 0.8 -->
+  <url>
+    <loc>https://rafey.me/#skills</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- PROJECTS — Priority 0.9 -->
+  <url>
+    <loc>https://rafey.me/#projects</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SERVICES — Priority 0.8 -->
+  <url>
+    <loc>https://rafey.me/#services</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- CONTACT — Priority 0.7 -->
+  <url>
+    <loc>https://rafey.me/#contact</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
