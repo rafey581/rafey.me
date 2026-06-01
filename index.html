@@ -1360,6 +1360,59 @@
       border: 1px solid rgba(232, 184, 75, 0.2);
     }
 
+    /* Fix card layout — equal height, footer always at bottom */
+.cert-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-details {
+  flex: 1; /* pushes footer to bottom */
+}
+
+.cert-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.cert-btn {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(232, 184, 75, 0.3);
+  padding: 0.35rem 0.9rem;
+  border-radius: 2px;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.cert-btn:hover {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+.cert-btn-disabled {
+  color: var(--muted);
+  border-color: var(--border);
+  cursor: default;
+}
+
+.cert-btn-disabled:hover {
+  background: transparent;
+  color: var(--muted);
+  border-color: var(--border);
+}
+
     /* ─── SKILLS ───────────────────────────────────── */
     #skills {
       background: var(--surface);
@@ -2187,7 +2240,10 @@
         <li>Completed 10+ graded problem sets and a full final project</li>
         <li>Topics span security, memory management, and web development</li>
       </ul>
-      <div class="cert-badge certified">✓ Certified</div>
+      <div class="cert-footer">
+        <div class="cert-badge certified">✓ Certified</div>
+        <a href="#" class="cert-btn" target="_blank" rel="noopener">View Certificate ↗</a>
+      </div>
     </div>
 
     <div class="cert-card">
@@ -2201,7 +2257,10 @@
         <li>Risk management, system security, privacy, and cyber threat analysis</li>
         <li>Completed 5+ assignments and a final project on real-world attack scenarios</li>
       </ul>
-      <div class="cert-badge certified">✓ Certified</div>
+      <div class="cert-footer">
+        <div class="cert-badge certified">✓ Certified</div>
+        <a href="#" class="cert-btn" target="_blank" rel="noopener">View Certificate ↗</a>
+      </div>
     </div>
 
     <div class="cert-card">
@@ -2216,7 +2275,10 @@
         <li>Network security, encryption techniques, and access control implementation</li>
         <li>Hands-on labs and real-world attack simulations</li>
       </ul>
-      <div class="cert-badge certified">✓ Certified</div>
+      <div class="cert-footer">
+        <div class="cert-badge certified">✓ Certified</div>
+        <a href="#" class="cert-btn" target="_blank" rel="noopener">View Certificate ↗</a>
+      </div>
     </div>
 
     <div class="cert-card">
@@ -2232,7 +2294,10 @@
         <li>Windows/Linux security hardening and Active Directory management</li>
         <li>Practical labs via TryHackMe platform</li>
       </ul>
-      <div class="cert-badge certified">✓ Certified</div>
+      <div class="cert-footer">
+        <div class="cert-badge certified">✓ Certified</div>
+        <a href="#" class="cert-btn" target="_blank" rel="noopener">View Certificate ↗</a>
+      </div>
     </div>
 
     <div class="cert-card">
@@ -2246,7 +2311,10 @@
         <li>Risk management frameworks and threat identification</li>
         <li>Network security fundamentals and digital defense strategies</li>
       </ul>
-      <div class="cert-badge ongoing">◉ In Progress</div>
+      <div class="cert-footer">
+        <div class="cert-badge ongoing">◉ In Progress</div>
+        <span class="cert-btn cert-btn-disabled">Certificate Pending</span>
+      </div>
     </div>
 
     <div class="cert-card">
@@ -2260,7 +2328,10 @@
         <li>Penetration testing fundamentals and reconnaissance methodologies</li>
         <li>Security testing workflows and OWASP security concepts</li>
       </ul>
-      <div class="cert-badge ongoing">◉ In Progress</div>
+      <div class="cert-footer">
+        <div class="cert-badge ongoing">◉ In Progress</div>
+        <span class="cert-btn cert-btn-disabled">Certificate Pending</span>
+      </div>
     </div>
 
     <div class="cert-card">
@@ -2274,7 +2345,10 @@
         <li>Database integration, API design, and RESTful service development</li>
         <li>Secure backend development practices and data protection principles</li>
       </ul>
-      <div class="cert-badge ongoing">◉ In Progress</div>
+      <div class="cert-footer">
+        <div class="cert-badge ongoing">◉ In Progress</div>
+        <span class="cert-btn cert-btn-disabled">Certificate Pending</span>
+      </div>
     </div>
 
   </div>
