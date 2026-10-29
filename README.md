@@ -49,12 +49,13 @@ This is the source for **[rafey.me](https://rafey.me)** — my personal portfoli
 
 | Layer | Technology |
 |---|---|
-| **Structure** | HTML5 (Semantic) |
-| **Styling** | CSS3 — Custom properties, Grid, Flexbox, Animations |
-| **Interactivity** | Vanilla JavaScript ES6+ |
-| **Fonts** | DM Serif Display · Syne · IBM Plex Mono |
+| **3D / WebGL** | Three.js r160 (self-hosted in `assets/vendor`) · custom GLSL shaders |
+| **Post-processing** | Unreal bloom · chromatic aberration · film grain |
+| **Structure** | HTML5 (Semantic) — all content lives in the markup, the 3D layer reads from it |
+| **Styling** | CSS3 — custom properties, 3D transforms, backdrop-filter, `@property` |
+| **Interactivity** | Vanilla JavaScript ES modules — no build step |
+| **Fonts** | Syne · DM Serif Display · IBM Plex Mono |
 | **SEO** | JSON-LD Structured Data (7 schemas) · Open Graph · Twitter Card |
-| **PWA** | Web App Manifest · Service Worker ready |
 
 </div>
 
@@ -64,16 +65,18 @@ This is the source for **[rafey.me](https://rafey.me)** — my personal portfoli
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  ✦  Custom gold cursor with trailing ring                   │
-│  ✦  Scroll-triggered reveal animations                      │
-│  ✦  Animated skill bars (fill on scroll)                    │
-│  ✦  Accordion project list (01–07)                          │
-│  ✦  Animated hero stat counters                             │
-│  ✦  Scrolling tech-stack marquee ticker                     │
-│  ✦  Subtle golden grid background                           │
-│  ✦  Film-grain noise texture overlay                        │
-│  ✦  Full-screen mobile hamburger menu                       │
-│  ✦  Inline SVG favicon — no external file needed            │
+│  ✦  One continuous 3D world — the camera flies through it   │
+│     as you scroll, with warp streaks and camera roll        │
+│  ✦  Hero: noise-displaced shader core, click it to pulse    │
+│  ✦  About: rotating data double-helix with binary glyphs    │
+│  ✦  Certs: holographic vault lock that unlocks itself       │
+│  ✦  Skills: draggable 3D tag sphere of the stack            │
+│  ✦  Projects: pinned, curved shader carousel with ripples   │
+│  ✦  Services: animated particle wave terrain                │
+│  ✦  Contact: dotted globe with live arcs from Sahiwal       │
+│  ✦  Terminal boot loader · decrypting headings · 3D tilt    │
+│  ✦  Hidden shell — press ` (backtick) and type "help"       │
+│  ✦  Adaptive quality, reduced-motion + no-WebGL fallbacks   │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -221,7 +224,12 @@ This portfolio implements a **world-class SEO stack**:
 
 ```
 rafey.me/
-├── index.html              ← Main portfolio
+├── index.html              ← Main portfolio (markup + SEO)
+├── assets/css/style.css    ← UI styles
+├── assets/js/main.js       ← UI layer: loader, cursor, scroll, terminal
+├── assets/js/scene.js      ← Three.js world + shaders
+├── assets/vendor/three/    ← Three.js r160 (MIT)
+├── assets/tex/             ← Optimised project textures (webp)
 ├── logo.html               ← Brand identity sheet
 ├── sitemap.xml             ← Google indexing map
 ├── robots.txt              ← Crawler directives

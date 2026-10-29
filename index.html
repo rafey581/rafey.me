@@ -125,7 +125,6 @@
 
   <!-- ── PRELOAD CRITICAL RESOURCES ── -->
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" as="style" />
-  <link rel="preload" href="/assets/images/personal.png" as="image" type="image/png" />
 
   <!-- ── FONTS ── -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -594,1483 +593,57 @@
   }
   </script>
 
-  <!-- ══ YOUR EXISTING CSS BELOW — UNCHANGED ══ -->
-
-<link rel="preload" href="/assets/images/personal.png" as="image" />
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" as="style" />
 
   <!-- ─── FAVICON ──────────────────────────────────────── -->
   <link rel="icon" type="image/png" sizes="64x64" href="/assets/icons/favicon_64.png" />
   <link rel="apple-touch-icon" href="/assets/icons/favicon_64.png" />
   <meta name="theme-color" content="#080C10" />
-
-  <style>
-    /* ─── RESET & ROOT ─────────────────────────────── */
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #080C10;
-      --surface: #0F1419;
-      --border: rgba(255, 255, 255, 0.07);
-      --gold: #E8B84B;
-      --gold-dim: rgba(232, 184, 75, 0.15);
-      --teal: #2FFCB1;
-      --teal-dim: rgba(47, 252, 177, 0.10);
-      --text: #E8E4DC;
-      --muted: #6B7280;
-      --font-head: 'DM Serif Display', serif;
-      --font-body: 'Syne', sans-serif;
-      --font-mono: 'IBM Plex Mono', monospace;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    ::selection {
-      background: var(--gold);
-      color: var(--bg);
-    }
-
-    /* ─── CUSTOM CURSOR ────────────────────────────── */
-    #cursor {
-      width: 12px;
-      height: 12px;
-      background: var(--gold);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
-    }
-
-    #cursor-ring {
-      width: 36px;
-      height: 36px;
-      border: 1.5px solid var(--gold);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
-      opacity: 0.5;
-    }
-
-    body:hover #cursor {
-      opacity: 1;
-    }
-
-    /* ─── NOISE OVERLAY ────────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.025;
-      pointer-events: none;
-      z-index: 9990;
-    }
-
-    /* ─── SCROLLBAR ────────────────────────────────── */
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--gold);
-      border-radius: 2px;
-    }
-
-    /* ─── GRID LINES ───────────────────────────────── */
-    .grid-bg {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        linear-gradient(rgba(232, 184, 75, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232, 184, 75, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    /* ─── PROGRESS BAR ─────────────────────────────── */
-    #progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--teal), var(--gold));
-      z-index: 999;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-
-    /* ─── NAV ──────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 0 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      height: 72px;
-      background: rgba(8, 12, 16, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: var(--font-head);
-      font-size: 1.5rem;
-      color: var(--gold);
-      letter-spacing: -0.02em;
-    }
-
-    .nav-logo span {
-      font-style: italic;
-      color: var(--teal);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color 0.3s;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      right: 100%;
-      height: 1px;
-      background: var(--gold);
-      transition: right 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a:hover::after {
-      right: 0;
-    }
-
-    .nav-cta {
-      padding: 0.6rem 1.4rem;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    .nav-cta:hover {
-      background: var(--gold);
-      color: var(--bg);
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--text);
-      transition: all 0.3s;
-    }
-
-    /* ─── HERO ─────────────────────────────────────── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 100px 5% 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.12;
-      pointer-events: none;
-    }
-
-    .hero-glow-1 {
-      background: var(--gold);
-      top: -100px;
-      right: -100px;
-    }
-
-    .hero-glow-2 {
-      background: var(--teal);
-      bottom: -200px;
-      left: -100px;
-    }
-
-    .hero-inner {
-      max-width: 900px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--teal);
-      letter-spacing: 0.1em;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s forwards;
-    }
-
-    .hero-tag::before {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--teal);
-    }
-
-    h1.hero-name {
-      font-family: var(--font-head);
-      font-size: clamp(4rem, 12vw, 9rem);
-      line-height: 0.92;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      opacity: 0;
-      animation: fadeUp 0.9s 0.35s forwards;
-    }
-
-    h1.hero-name em {
-      font-style: italic;
-      color: var(--gold);
-      display: block;
-    }
-
-    .hero-role {
-      margin-top: 2rem;
-      font-size: 1rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.55s forwards;
-    }
-
-    .hero-desc {
-      margin-top: 1.5rem;
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: var(--text);
-      opacity: 0;
-      max-width: 560px;
-      animation: fadeUp 0.8s 0.7s forwards;
-    }
-
-    .hero-actions {
-      margin-top: 3rem;
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.85s forwards;
-    }
-
-    .btn-primary {
-      padding: 1rem 2.5rem;
-      background: var(--gold);
-      color: var(--bg);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--teal);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
-    .btn-primary:hover::after {
-      transform: scaleX(1);
-    }
-
-    .btn-primary span {
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-outline {
-      padding: 1rem 2.5rem;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    .btn-outline:hover {
-      border-color: var(--text);
-      color: var(--text);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 40px;
-      left: 5%;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      opacity: 0;
-      animation: fadeUp 0.8s 1.1s forwards;
-    }
-
-    .hero-scroll::before {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--muted));
-    }
-
-    .hero-counter {
-      position: absolute;
-      bottom: 40px;
-      right: 5%;
-      display: flex;
-      gap: 3rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 1.2s forwards;
-    }
-
-    .counter-item {
-      text-align: center;
-    }
-
-    .counter-num {
-      font-family: var(--font-head);
-      font-size: 2.5rem;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .counter-label {
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 0.3rem;
-    }
-
-    /* ─── MARQUEE ──────────────────────────────────── */
-    .marquee-wrap {
-      overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 1.2rem 0;
-      background: var(--surface);
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 3rem;
-      animation: marquee 22s linear infinite;
-      width: max-content;
-    }
-
-    .marquee-item {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-    }
-
-    .marquee-item::after {
-      content: '◆';
-      font-size: 0.5rem;
-      color: var(--gold);
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* ─── SECTIONS COMMON ──────────────────────────── */
-    section {
-      padding: 120px 5%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--teal);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-
-    .section-label::before {
-      content: '';
-      flex-shrink: 0;
-      width: 40px;
-      height: 1px;
-      background: var(--teal);
-    }
-
-    h2.section-title {
-      font-family: var(--font-head);
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 4rem;
-    }
-
-    h2.section-title em {
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    /* ─── ABOUT ────────────────────────────────────── */
-    #about .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: rgba(232, 228, 220, 0.75);
-      margin-bottom: 1.5rem;
-    }
-
-    .about-text p strong {
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .about-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 2.5rem;
-    }
-
-    .detail-cell {
-      background: var(--surface);
-      padding: 1.4rem 1.6rem;
-    }
-
-    .detail-key {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--teal);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
-    }
-
-    .detail-val {
-      font-size: 0.9rem;
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .about-right {
-      position: sticky;
-      top: 100px;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .exp-card {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      background: var(--surface);
-    }
-
-    .exp-card-top {
-      padding: 1.6rem 2rem;
-      border-bottom: 1px solid var(--border);
-      background: var(--gold-dim);
-    }
-
-    .exp-tag {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--gold);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-    }
-
-    .exp-title {
-      font-family: var(--font-head);
-      font-size: 1.4rem;
-      color: var(--text);
-      line-height: 1.2;
-    }
-
-    .exp-org {
-      color: var(--gold);
-      margin-top: 0.3rem;
-      font-size: 0.9rem;
-    }
-
-    .exp-card-body {
-      padding: 1.6rem 2rem;
-    }
-
-    .exp-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-
-    .exp-list li {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.88rem;
-      color: rgba(232, 228, 220, 0.7);
-      line-height: 1.5;
-    }
-
-    .exp-list li::before {
-      content: '→';
-      color: var(--teal);
-      flex-shrink: 0;
-    }
-
-    /* ─── CERTIFICATIONS ───────────────────────────── */
-    #certifications {
-      background: var(--bg);
-    }
-
-    .certs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .cert-card {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: var(--surface);
-      padding: 2rem;
-      transition: border-color 0.3s, transform 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cert-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--teal), var(--gold));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
-    .cert-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .cert-card:hover {
-      border-color: rgba(232, 184, 75, 0.25);
-      transform: translateY(-3px);
-    }
-
-    .cert-issuer {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--teal);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .cert-issuer-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--teal);
-      flex-shrink: 0;
-    }
-
-    .cert-name {
-      font-family: var(--font-head);
-      font-size: 1.2rem;
-      color: var(--text);
-      line-height: 1.3;
-      margin-bottom: 1rem;
-    }
-
-    .cert-details {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .cert-details li {
-      font-size: 0.82rem;
-      color: rgba(232, 228, 220, 0.6);
-      line-height: 1.4;
-      display: flex;
-      gap: 0.6rem;
-    }
-
-    .cert-details li::before {
-      content: '·';
-      color: var(--gold);
-      flex-shrink: 0;
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-
-    .cert-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-top: 1.2rem;
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.8rem;
-      border-radius: 2px;
-    }
-
-    .cert-badge.certified {
-      background: rgba(47, 252, 177, 0.1);
-      color: var(--teal);
-      border: 1px solid rgba(47, 252, 177, 0.2);
-    }
-
-    .cert-badge.ongoing {
-      background: rgba(232, 184, 75, 0.1);
-      color: var(--gold);
-      border: 1px solid rgba(232, 184, 75, 0.2);
-    }
-
-    /* Fix card layout — equal height, footer always at bottom */
-.cert-card {
-  display: flex;
-  flex-direction: column;
-}
-
-.cert-details {
-  flex: 1; /* pushes footer to bottom */
-}
-
-.cert-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--border);
-  flex-wrap: wrap;
-}
-
-.cert-btn {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid rgba(232, 184, 75, 0.3);
-  padding: 0.35rem 0.9rem;
-  border-radius: 2px;
-  transition: all 0.3s;
-  white-space: nowrap;
-}
-
-.cert-btn:hover {
-  background: var(--gold);
-  color: var(--bg);
-  border-color: var(--gold);
-}
-
-.cert-btn-disabled {
-  color: var(--muted);
-  border-color: var(--border);
-  cursor: default;
-}
-
-.cert-btn-disabled:hover {
-  background: transparent;
-  color: var(--muted);
-  border-color: var(--border);
-}
-
-    /* ─── SKILLS ───────────────────────────────────── */
-    #skills {
-      background: var(--surface);
-    }
-
-    .skills-categories {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    @media (max-width: 900px) {
-      .skills-categories {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .skills-category-label {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--gold);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .skills-category-label span {
-      opacity: 0.5;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .skill-cell {
-      background: var(--bg);
-      padding: 1.8rem 1.4rem;
-      transition: background 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .skill-cell::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gold-dim);
-      transform: translateY(100%);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .skill-cell:hover::before {
-      transform: translateY(0);
-    }
-
-    .skill-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(232, 184, 75, 0.1);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-      font-size: 1.3rem;
-      font-family: var(--font-mono);
-      font-weight: 500;
-      color: var(--gold);
-    }
-
-    .skill-name {
-      font-weight: 700;
-      font-size: 0.92rem;
-      position: relative;
-      z-index: 1;
-      margin-bottom: 0.3rem;
-    }
-
-    .skill-level {
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      color: var(--teal);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
-
-    .skill-bar-track {
-      margin-top: 0.8rem;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 1px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--teal), var(--gold));
-      border-radius: 1px;
-      width: 0%;
-      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* ─── PROJECTS ─────────────────────────────────── */
-    .projects-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .project-item {
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      background: var(--surface);
-      transition: border-color 0.3s;
-    }
-
-    .project-item:hover {
-      border-color: rgba(232, 184, 75, 0.3);
-    }
-
-    .project-header {
-      padding: 2rem 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      gap: 2rem;
-    }
-
-    .project-num {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      flex-shrink: 0;
-      width: 40px;
-    }
-
-    .project-info {
-      flex: 1;
-    }
-
-    .project-name {
-      font-family: var(--font-head);
-      font-size: 1.5rem;
-      color: var(--text);
-      transition: color 0.3s;
-    }
-
-    .project-item:hover .project-name {
-      color: var(--gold);
-    }
-
-    .project-stack {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .stack-tag {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--teal);
-      letter-spacing: 0.08em;
-      padding: 0.2rem 0.6rem;
-      border: 1px solid rgba(47, 252, 177, 0.2);
-      border-radius: 2px;
-    }
-
-    .project-arrow {
-      width: 48px;
-      height: 48px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      flex-shrink: 0;
-      transition: all 0.3s;
-    }
-
-    .project-item:hover .project-arrow {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: var(--bg);
-      transform: rotate(45deg);
-    }
-
-    .project-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .project-body.open {
-      max-height: 400px;
-    }
-
-    .project-body-inner {
-      padding: 0 2.5rem 2rem;
-      border-top: 1px solid var(--border);
-      padding-top: 1.5rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-    }
-
-    .project-desc {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: rgba(232, 228, 220, 0.65);
-    }
-
-    .project-features {
-      list-style: none;
-      margin-top: 0.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .project-features li {
-      font-size: 0.85rem;
-      color: rgba(232, 228, 220, 0.55);
-      display: flex;
-      gap: 0.6rem;
-    }
-
-    .project-features li::before {
-      content: '→';
-      color: var(--teal);
-      flex-shrink: 0;
-      font-size: 0.8rem;
-    }
-
-    .project-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .project-link {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color 0.3s;
-    }
-
-    .project-link:hover {
-      color: var(--gold);
-    }
-
-    .project-link svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    /* ─── SERVICES SECTION ─────────────────────────── */
-    #services {
-      background: var(--bg);
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .service-card {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: var(--surface);
-      padding: 2rem;
-      transition: border-color 0.3s, transform 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--teal));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-
-    .service-card:hover::after {
-      transform: scaleX(1);
-    }
-
-    .service-card:hover {
-      border-color: rgba(232, 184, 75, 0.2);
-      transform: translateY(-3px);
-    }
-
-    .service-icon {
-      width: 52px;
-      height: 52px;
-      background: var(--gold-dim);
-      border: 1px solid rgba(232, 184, 75, 0.2);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.4rem;
-    }
-
-    .service-title {
-      font-family: var(--font-head);
-      font-size: 1.2rem;
-      color: var(--text);
-      margin-bottom: 0.8rem;
-    }
-
-    .service-desc {
-      font-size: 0.88rem;
-      line-height: 1.65;
-      color: rgba(232, 228, 220, 0.6);
-    }
-
-    /* ─── CONTACT ──────────────────────────────────── */
-    #contact {
-      background: var(--surface);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .contact-left h3 {
-      font-family: var(--font-head);
-      font-size: 2rem;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-
-    .contact-left p {
-      font-size: 1rem;
-      color: rgba(232, 228, 220, 0.6);
-      line-height: 1.7;
-    }
-
-    .contact-info {
-      margin-top: 3rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .contact-row {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .contact-row-icon {
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
-      background: var(--gold-dim);
-      border: 1px solid rgba(232, 184, 75, 0.2);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-    }
-
-    .contact-row-icon svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .contact-row-key {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--teal);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.2rem;
-    }
-
-    .contact-row-val {
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-
-    .contact-row-val a:hover {
-      color: var(--gold);
-    }
-
-    .social-row {
-      display: flex;
-      gap: 0.8rem;
-      margin-top: 2rem;
-    }
-
-    .social-btn {
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      transition: all 0.3s;
-    }
-
-    .social-btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: var(--gold-dim);
-    }
-
-    .social-btn svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    /* ─── FORM ─────────────────────────────────────── */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .form-label {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--teal);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .form-input,
-    .form-textarea {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 0.95rem;
-      padding: 0.9rem 1.2rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-
-    .form-input:focus,
-    .form-textarea:focus {
-      outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(232, 184, 75, 0.1);
-    }
-
-    .form-input::placeholder,
-    .form-textarea::placeholder {
-      color: var(--muted);
-    }
-
-    .form-textarea {
-      resize: vertical;
-      min-height: 140px;
-    }
-
-    .form-btn {
-      padding: 1rem 2rem;
-      background: var(--gold);
-      color: var(--bg);
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .form-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(232, 184, 75, 0.3);
-    }
-
-    .form-btn:active {
-      transform: translateY(0);
-    }
-
-    /* ─── FOOTER ───────────────────────────────────── */
-    footer {
-      padding: 3rem 5%;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-logo {
-      font-family: var(--font-head);
-      font-size: 1.2rem;
-      color: var(--gold);
-    }
-
-    .footer-copy {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-    }
-
-    .footer-nav {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .footer-nav a {
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-
-    .footer-nav a:hover {
-      color: var(--gold);
-    }
-
-    /* ─── MOBILE MENU ──────────────────────────────── */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 90;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2.5rem;
-    }
-
-    .mobile-menu.open {
-      display: flex;
-    }
-
-    .mobile-menu a {
-      font-family: var(--font-head);
-      font-size: 2.5rem;
-      color: var(--text);
-      transition: color 0.3s;
-    }
-
-    .mobile-menu a:hover {
-      color: var(--gold);
-    }
-
-    /* ─── ANIMATIONS ───────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-
-    /* ─── RESPONSIVE ───────────────────────────────── */
-    @media (max-width: 900px) {
-      .nav-links,
-      .nav-cta { display: none; }
-      .hamburger { display: flex; }
-      #about .about-grid { grid-template-columns: 1fr; }
-      .about-right { position: static; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .project-body-inner { grid-template-columns: 1fr; }
-      .hero-counter { display: none; }
-      .footer-nav { display: none; }
-    }
-
-    @media (max-width: 600px) {
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-details { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; }
-      .certs-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/assets/vendor/three/build/three.module.min.js",
+      "three/addons/": "/assets/vendor/three/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="/assets/js/main.js"></script>
 </head>
 
-<body>
+<body class="is-loading">
+
+  <!-- WebGL world -->
+  <canvas id="webgl" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Boot loader -->
+  <div id="loader" role="status" aria-live="polite">
+    <div class="loader-term">
+      <div class="loader-head"><span></span><span></span><span></span><em>rafey@secure-shell: ~</em></div>
+      <pre id="bootLog"></pre>
+      <div class="loader-bar"><i id="loaderBar"></i></div>
+      <div class="loader-pct"><span id="loaderPct">0</span>%</div>
+    </div>
+    <div class="loader-doors" aria-hidden="true"><i></i><i></i></div>
+  </div>
 
   <!-- Cursor -->
-  <div id="cursor"></div>
-  <div id="cursor-ring"></div>
+  <div class="cursor" aria-hidden="true"><div class="cursor-dot"></div><div class="cursor-ring"><span class="cursor-label"></span></div></div>
 
-  <!-- Progress bar -->
-  <div id="progress"></div>
-
-  <!-- Grid Background -->
-  <div class="grid-bg"></div>
+  <!-- HUD -->
+  <div class="hud" aria-hidden="true">
+    <div class="hud-tl">SYS://RAFEY.ME <b>●</b> <span id="hudSection">BOOT</span></div>
+    <div class="hud-bl"><span>DEPTH</span> <b id="hudDepth">0.00</b> <span>FPS</span> <b id="hudFps">60</b></div>
+    <div class="hud-br"><span id="hudClock">--:--:--</span> PKT · press <kbd>`</kbd> for terminal</div>
+    <ol class="hud-rail" id="hudRail"></ol>
+  </div>
+  <div id="progress" aria-hidden="true"></div>
 
   <!-- NAV -->
-  <nav>
-    <div class="nav-logo">AR<span>.</span></div>
+  <nav class="nav">
+    <a href="#hero" class="nav-logo" data-magnetic>AR<span>.</span></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#certifications">Certs</a></li>
@@ -2079,13 +652,9 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="mailto:itsstranger@gmail.com" class="nav-cta">Hire Me</a>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
+    <a href="mailto:itsstranger@gmail.com" class="nav-cta" data-magnetic><span>Hire Me</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
   </nav>
-
-  <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about" class="mob-link">About</a>
     <a href="#certifications" class="mob-link">Certs</a>
@@ -2095,952 +664,335 @@
     <a href="#contact" class="mob-link">Contact</a>
   </div>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-glow hero-glow-1"></div>
-    <div class="hero-glow hero-glow-2"></div>
-    <div class="hero-inner">
-      <div class="hero-tag">Available for freelance &amp; full-time opportunities</div>
-      <h1 class="hero-name">
-        Abdul<br>
-        <em>Rafey</em>
-      </h1>
-      <p class="hero-role">Web Developer &nbsp;·&nbsp; Cybersecurity Specialist &nbsp;·&nbsp; Pakistan</p>
-      <p class="hero-desc">
-        I build <strong style="color:var(--gold)">secure, high-performance web applications</strong> — combining
-        modern frontend engineering with a security-first mindset to deliver digital products that are fast,
-        reliable, and resilient.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-primary"><span>View My Work</span></a>
-        <a href="#contact" class="btn-outline">Get in Touch</a>
-      </div>
-    </div>
-    <div class="hero-scroll">SCROLL</div>
-    <div class="hero-counter">
-      <div class="counter-item">
-        <div class="counter-num" data-count="7">0</div>
-        <div class="counter-label">Projects</div>
-      </div>
-      <div class="counter-item">
-        <div class="counter-num" data-count="3">0</div>
-        <div class="counter-label">Certifications</div>
-      </div>
-      <div class="counter-item">
-        <div class="counter-num" data-count="2">0</div>
-        <div class="counter-label">Disciplines</div>
-      </div>
-    </div>
-  </section>
+  <main>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <div class="marquee-item">HTML5</div>
-      <div class="marquee-item">CSS3</div>
-      <div class="marquee-item">JavaScript</div>
-      <div class="marquee-item">Python · Flask</div>
-      <div class="marquee-item">Tailwind CSS</div>
-      <div class="marquee-item">Network Security</div>
-      <div class="marquee-item">SIEM · IDS/IPS</div>
-      <div class="marquee-item">MITRE ATT&CK</div>
-      <div class="marquee-item">CS50 Certified</div>
-      <div class="marquee-item">SQLite</div>
-      <!-- duplicate for seamless loop -->
-      <div class="marquee-item">HTML5</div>
-      <div class="marquee-item">CSS3</div>
-      <div class="marquee-item">JavaScript</div>
-      <div class="marquee-item">Python · Flask</div>
-      <div class="marquee-item">Tailwind CSS</div>
-      <div class="marquee-item">Network Security</div>
-      <div class="marquee-item">SIEM · IDS/IPS</div>
-      <div class="marquee-item">MITRE ATT&CK</div>
-      <div class="marquee-item">CS50 Certified</div>
-      <div class="marquee-item">SQLite</div>
-    </div>
-  </div>
+    <!-- HERO -->
+    <section id="hero" class="section" data-label="Core">
+      <div class="hero-inner">
+        <div class="hero-tag"><i></i>Available for freelance &amp; full-time opportunities</div>
+        <h1 class="hero-name" aria-label="Abdul Rafey">
+          <span class="line" data-split>ABDUL</span>
+          <span class="line line-2" data-split>RAFEY</span>
+        </h1>
+        <p class="hero-role">&gt; <span id="typeRole">Web Developer</span><i class="caret"></i></p>
+        <p class="hero-desc">
+          I build <strong>secure, high-performance web applications</strong> — combining modern frontend
+          engineering with a security-first mindset to deliver digital products that are fast, reliable,
+          and resilient.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary" data-magnetic><span>View My Work</span></a>
+          <a href="#contact" class="btn btn-ghost" data-magnetic><span>Get in Touch</span></a>
+        </div>
+      </div>
+      <div class="hero-counter">
+        <div class="counter-item"><div class="counter-num" data-count="7">0</div><div class="counter-label">Projects</div></div>
+        <div class="counter-item"><div class="counter-num" data-count="4">0</div><div class="counter-label">Certifications</div></div>
+        <div class="counter-item"><div class="counter-num" data-count="2">0</div><div class="counter-label">Disciplines</div></div>
+      </div>
+      <div class="hero-hint">click the core · scroll to dive</div>
+    </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-label">01 — Background</div>
-    <h2 class="section-title">Developer.<br><em>Security-Focused.</em></h2>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>I'm <strong>Abdul Rafey</strong> — a Web Developer and Cybersecurity Specialist from Sahiwal, Punjab. I design and build modern web applications that are not only visually compelling but architecturally secure, efficient, and production-ready.</p>
-        <p>My dual expertise sets me apart: I don't just build websites — I <strong>harden them</strong>. From secure authentication systems and vulnerability-aware architecture to network protocol understanding and threat modeling, I bring a security-first mindset to every project I ship.</p>
-        <p>Certified by <strong>Harvard University</strong> through CS50x and CS50 Cybersecurity, and additionally certified by <strong>Innovista</strong> in Cybersecurity Specialization — I continuously sharpen both my development craft and security knowledge through rigorous coursework and hands-on lab environments like <strong>TryHackMe</strong>.</p>
-        <div class="about-details">
-          <div class="detail-cell">
-            <div class="detail-key">Location</div>
-            <div class="detail-val">Sahiwal, Pakistan</div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Python · Flask</span><span>Tailwind CSS</span><span>SQLite</span><span>Network Security</span><span>SIEM · IDS/IPS</span><span>MITRE ATT&amp;CK</span><span>CS50 Certified</span>
+        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Python · Flask</span><span>Tailwind CSS</span><span>SQLite</span><span>Network Security</span><span>SIEM · IDS/IPS</span><span>MITRE ATT&amp;CK</span><span>CS50 Certified</span>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="section" data-label="About">
+      <div class="wrap split">
+        <div class="col">
+          <p class="eyebrow">01 — Background</p>
+          <h2 class="title" data-scramble>Developer. Security-Focused.</h2>
+          <div class="prose reveal">
+            <p>I'm Abdul Rafey — a Web Developer and Cybersecurity Specialist from Sahiwal, Punjab. I design and build modern web applications that are not only visually compelling but architecturally secure, efficient, and production-ready.</p>
+            <p>My dual expertise sets me apart: I don't just build websites — I <em>harden</em> them. From secure authentication systems and vulnerability-aware architecture to network protocol understanding and threat modeling, I bring a security-first mindset to every project I ship.</p>
+            <p>Certified by Harvard University through CS50x and CS50 Cybersecurity, and additionally certified by Innovista in Cybersecurity Specialization — I continuously sharpen both my development craft and security knowledge through rigorous coursework and hands-on lab environments like <strong>TryHackMe</strong>.</p>
           </div>
-          <div class="detail-cell">
-            <div class="detail-key">Status</div>
-            <div class="detail-val" style="color:var(--teal)">● Open to Work</div>
-          </div>
-          <div class="detail-cell">
-            <div class="detail-key">Email</div>
-            <div class="detail-val">itsstranger@gmail.com</div>
-          </div>
-          <div class="detail-cell">
-            <div class="detail-key">Phone</div>
-            <div class="detail-val">+92 320 6912491</div>
-          </div>
-        </div>
-      </div>
-      <div class="about-right reveal reveal-delay-2">
-        <div class="exp-card">
-          <div class="exp-card-top">
-            <div class="exp-tag">Training — 2025</div>
-            <div class="exp-title">Web Development Program</div>
-            <div class="exp-org">Bano Qabil Sahiwal</div>
-          </div>
-          <div class="exp-card-body">
-            <ul class="exp-list">
-              <li>Engineered responsive, accessible UIs using HTML5, CSS3, and JavaScript for real-world client scenarios.</li>
-              <li>Applied on-page SEO and semantic architecture to maximize search visibility and performance scores.</li>
-              <li>Delivered clean, modular codebases with Git version control and organized project structure.</li>
-              <li>Reproduced complex commercial interfaces (Samsung, Amazon) with pixel-level precision and full responsiveness.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="exp-card">
-          <div class="exp-card-top">
-            <div class="exp-tag">Ongoing — 2026</div>
-            <div class="exp-title">Advanced Cybersecurity Program</div>
-            <div class="exp-org">Bano Qabil Sahiwal</div>
-          </div>
-          <div class="exp-card-body">
-            <ul class="exp-list">
-              <li>Studying SOC operations, Red Team vs Blue Team methodologies, and CIA Triad principles.</li>
-              <li>Hands-on labs via TryHackMe covering Windows/Linux security and Active Directory hardening.</li>
-              <li>Applying MITRE ATT&amp;CK framework for threat mapping and incident response simulations.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="section-label">02 — Credentials</div>
-  <h2 class="section-title">Certifications &amp;<br><em>Coursework</em></h2>
-  <div class="certs-grid reveal">
-
-    <div class="cert-card">
-      <div class="cert-issuer">
-        <div class="cert-issuer-dot"></div>
-        Harvard University
-      </div>
-      <div class="cert-name">CS50x — Introduction to Computer Science</div>
-      <ul class="cert-details">
-        <li>Algorithmic thinking, data structures, abstraction, and software engineering principles</li>
-        <li>Languages covered: C, Python, SQL, HTML, CSS, JavaScript</li>
-        <li>Completed 10+ graded problem sets and a full final project</li>
-        <li>Topics span security, memory management, and web development</li>
-      </ul>
-      <div class="cert-footer">
-        <div class="cert-badge certified">✓ Certified</div>
-        <a href="https://drive.google.com/file/d/1b0DfOTmBE_XGkqBnEwU_6Yic1rfNe29C/view?usp=drive_link" class="cert-btn" target="_blank" rel="noopener">View Certificate ↗</a>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-issuer">
-        <div class="cert-issuer-dot"></div>
-        Harvard University
-      </div>
-      <div class="cert-name">CS50 Introduction to Cybersecurity</div>
-      <ul class="cert-details">
-        <li>Cybersecurity fundamentals for both technical and non-technical contexts</li>
-        <li>Risk management, system security, privacy, and cyber threat analysis</li>
-        <li>Completed 5+ assignments and a final project on real-world attack scenarios</li>
-      </ul>
-      <div class="cert-footer">
-        <div class="cert-badge certified">✓ Certified</div>
-        <a href="https://drive.google.com/file/d/1INCXHIu4kIw2y6HSFJIpfJyEjOkPFi_t/view?usp=drive_link" class="cert-btn" target="_blank" rel="noopener">View Certificate ↗</a>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-issuer">
-        <div class="cert-issuer-dot"></div>
-        Innovista
-      </div>
-      <div class="cert-name">Cybersecurity Specialization</div>
-      <ul class="cert-details">
-        <li>Risk assessment, incident handling, and threat intelligence workflows</li>
-        <li>Business Continuity Planning (BCP) &amp; Disaster Recovery (DR) strategies</li>
-        <li>Network security, encryption techniques, and access control implementation</li>
-        <li>Hands-on labs and real-world attack simulations</li>
-      </ul>
-      <div class="cert-footer">
-        <div class="cert-badge certified">✓ Certified</div>
-        <a href="https://drive.google.com/file/d/1iPfNA8_bAhrCbDThdy9KODAZ8-Vwt36n/view?usp=drive_link" class="cert-btn" target="_blank" rel="noopener">View Certificate ↗</a>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-issuer">
-        <div class="cert-issuer-dot"></div>
-        Bano Qabil
-      </div>
-      <div class="cert-name">Advanced Cybersecurity Course</div>
-      <ul class="cert-details">
-        <li>CIA Triad, SOC operations, Red Team vs Blue Team methodologies</li>
-        <li>Network security, OSI model, TCP/IP protocols, and SIEM fundamentals</li>
-        <li>IDS/IPS, MITRE ATT&amp;CK framework, and threat modeling</li>
-        <li>Windows/Linux security hardening and Active Directory management</li>
-        <li>Practical labs via TryHackMe platform</li>
-      </ul>
-      <div class="cert-footer">
-        <div class="cert-badge certified">✓ Certified</div>
-        <a href="#" class="cert-btn" target="_blank" rel="noopener">View Certificate ↗</a>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-issuer">
-        <div class="cert-issuer-dot" style="background: var(--teal);"></div>
-        Hunarmand Punjab
-      </div>
-      <div class="cert-name">National Cybersecurity Program</div>
-      <ul class="cert-details">
-        <li>Cybersecurity fundamentals and security awareness best practices</li>
-        <li>Risk management frameworks and threat identification</li>
-        <li>Network security fundamentals and digital defense strategies</li>
-      </ul>
-      <div class="cert-footer">
-        <div class="cert-badge ongoing">◉ In Progress</div>
-        <span class="cert-btn cert-btn-disabled">Certificate Pending</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-issuer">
-        <div class="cert-issuer-dot" style="background: var(--teal);"></div>
-        Hunarmand Punjab
-      </div>
-      <div class="cert-name">Pentesting &amp; Web Hacking</div>
-      <ul class="cert-details">
-        <li>Web application security and vulnerability assessment techniques</li>
-        <li>Penetration testing fundamentals and reconnaissance methodologies</li>
-        <li>Security testing workflows and OWASP security concepts</li>
-      </ul>
-      <div class="cert-footer">
-        <div class="cert-badge ongoing">◉ In Progress</div>
-        <span class="cert-btn cert-btn-disabled">Certificate Pending</span>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-issuer">
-        <div class="cert-issuer-dot" style="background: var(--gold);"></div>
-        Bano Qabil Sahiwal
-      </div>
-      <div class="cert-name">Backend Development</div>
-      <ul class="cert-details">
-        <li>Backend fundamentals, server-side programming, and application architecture</li>
-        <li>Database integration, API design, and RESTful service development</li>
-        <li>Secure backend development practices and data protection principles</li>
-      </ul>
-      <div class="cert-footer">
-        <div class="cert-badge ongoing">◉ In Progress</div>
-        <span class="cert-btn cert-btn-disabled">Certificate Pending</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-label">03 — Expertise</div>
-    <h2 class="section-title">Tools &amp;<br><em>Technologies</em></h2>
-    <div class="skills-grid reveal">
-
-      <div class="skill-cell">
-        <div class="skill-icon">⟨/⟩</div>
-        <div class="skill-name">HTML5</div>
-        <div class="skill-level">Expert</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="95"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">✦</div>
-        <div class="skill-name">CSS3</div>
-        <div class="skill-level">Expert</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="92"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">JS</div>
-        <div class="skill-name">JavaScript ES6+</div>
-        <div class="skill-level">Proficient</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="80"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">⊞</div>
-        <div class="skill-name">Tailwind CSS</div>
-        <div class="skill-level">Proficient</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="85"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">Py</div>
-        <div class="skill-name">Python · Flask</div>
-        <div class="skill-level">Intermediate</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="70"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">DB</div>
-        <div class="skill-name">SQLite</div>
-        <div class="skill-level">Intermediate</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="68"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">🔒</div>
-        <div class="skill-name">Network Security</div>
-        <div class="skill-level">Intermediate</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="72"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">⚠</div>
-        <div class="skill-name">Risk Management</div>
-        <div class="skill-level">Intermediate</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="70"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">◎</div>
-        <div class="skill-name">SIEM · IDS/IPS</div>
-        <div class="skill-level">Foundational</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="60"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">⊛</div>
-        <div class="skill-name">MITRE ATT&amp;CK</div>
-        <div class="skill-level">Foundational</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="58"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">◈</div>
-        <div class="skill-name">Figma</div>
-        <div class="skill-level">Intermediate</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="72"></div>
-        </div>
-      </div>
-
-      <div class="skill-cell">
-        <div class="skill-icon">◎</div>
-        <div class="skill-name">SEO</div>
-        <div class="skill-level">Proficient</div>
-        <div class="skill-bar-track">
-          <div class="skill-bar-fill" data-width="80"></div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-label">04 — Work</div>
-    <h2 class="section-title">Selected<br><em>Projects</em></h2>
-    <div class="projects-list reveal">
-
-      <div class="project-item">
-        <div class="project-header" data-target="proj1">
-          <div class="project-num">01</div>
-          <div class="project-info">
-            <div class="project-name">E-Mart — E-Commerce Platform</div>
-            <div class="project-stack">
-              <span class="stack-tag">HTML</span>
-              <span class="stack-tag">Tailwind CSS</span>
-              <span class="stack-tag">JavaScript</span>
-              <span class="stack-tag">LocalStorage</span>
-            </div>
-          </div>
-          <div class="project-arrow">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </div>
-        </div>
-        <div class="project-body" id="proj1">
-          <div class="project-body-inner">
-            <div>
-              <p class="project-desc">A fully responsive e-commerce web application with a complete product ecosystem and admin control panel. Built with a static data architecture and LocalStorage persistence for a seamless, backend-free shopping experience.</p>
-              <ul class="project-features">
-                <li>Product browsing, search, cart, and wishlist management</li>
-                <li>Admin dashboard: Add, edit, and delete products in real-time</li>
-                <li>Responsive across all screen sizes using Tailwind CSS</li>
+          <dl class="details reveal">
+            <div><dt>Location</dt><dd>Sahiwal, Pakistan</dd></div>
+            <div><dt>Status</dt><dd class="ok">● Open to Work</dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:itsstranger@gmail.com">itsstranger@gmail.com</a></dd></div>
+            <div><dt>Phone</dt><dd><a href="tel:+923206912491">+92 320 6912491</a></dd></div>
+          </dl>
+          <div class="timeline">
+            <article class="glass tilt reveal">
+              <p class="meta">Training — 2025</p>
+              <h3>Web Development Program</h3>
+              <p class="org">Bano Qabil Sahiwal</p>
+              <ul>
+                <li>Engineered responsive, accessible UIs using HTML5, CSS3, and JavaScript for real-world client scenarios.</li>
+                <li>Applied on-page SEO and semantic architecture to maximize search visibility and performance scores.</li>
+                <li>Delivered clean, modular codebases with Git version control and organized project structure.</li>
+                <li>Reproduced complex commercial interfaces (Samsung, Amazon) with pixel-level precision and full responsiveness.</li>
               </ul>
-            </div>
-            <div class="project-links">
-              <a class="project-link" href="https://emart.infinityfreeapp.com/" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Live Demo
-              </a>
-              <a class="project-link" href="#" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Documentation
-              </a>
-              <a class="project-link" href="#" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                </svg>
-                Figma Design
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-item">
-        <div class="project-header" data-target="proj2">
-          <div class="project-num">02</div>
-          <div class="project-info">
-            <div class="project-name">Intent vs Reality — CS50 Final Project</div>
-            <div class="project-stack">
-              <span class="stack-tag">Python</span>
-              <span class="stack-tag">Flask</span>
-              <span class="stack-tag">SQLite</span>
-              <span class="stack-tag">JavaScript</span>
-              <span class="stack-tag">Chart.js</span>
-            </div>
-          </div>
-          <div class="project-arrow">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </div>
-        </div>
-        <div class="project-body" id="proj2">
-          <div class="project-body-inner">
-            <div>
-              <p class="project-desc">A full-stack productivity web application developed as the Harvard CS50x final project. Bridges the gap between intended and actual work output through real-time tracking and behavioral analytics.</p>
-              <ul class="project-features">
-                <li>Flask backend with SQLite for persistent session and task data</li>
-                <li>Real-time JavaScript timer for live task duration tracking</li>
-                <li>Productivity dashboard with Chart.js visualizations comparing estimates vs actuals</li>
-                <li>Focused on self-improvement feedback loops and behavior tracking</li>
+            </article>
+            <article class="glass tilt reveal">
+              <p class="meta teal">Ongoing — 2026</p>
+              <h3>Advanced Cybersecurity Program</h3>
+              <p class="org">Bano Qabil Sahiwal</p>
+              <ul>
+                <li>Studying SOC operations, Red Team vs Blue Team methodologies, and CIA Triad principles.</li>
+                <li>Hands-on labs via TryHackMe covering Windows/Linux security and Active Directory hardening.</li>
+                <li>Applying MITRE ATT&amp;CK framework for threat mapping and incident response simulations.</li>
               </ul>
-            </div>
-            <div class="project-links">
-              <a class="project-link" href="https://github.com/rafey581" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-                GitHub
-              </a>
-            </div>
+            </article>
           </div>
+        </div>
+        <div class="col col-space" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="section" data-label="Certs">
+      <div class="wrap">
+        <div class="split head-split">
+          <div class="col">
+            <p class="eyebrow">02 — Credentials</p>
+            <h2 class="title" data-scramble>Certifications &amp; Coursework</h2>
+            <p class="lead reveal">Every badge below unlocked one more layer. Hover a card — they're physical.</p>
+          </div>
+          <div class="col col-space" aria-hidden="true"></div>
+        </div>
+        <div class="cert-grid">
+          <article class="cert glass tilt reveal">
+            <div class="cert-top"><span class="cert-issuer">Harvard University</span><span class="badge ok">✓ Certified</span></div>
+            <h3>CS50x — Introduction to Computer Science</h3>
+            <ul>
+              <li>Algorithmic thinking, data structures, abstraction, and software engineering principles</li>
+              <li>Languages covered: C, Python, SQL, HTML, CSS, JavaScript</li>
+              <li>Completed 10+ graded problem sets and a full final project</li>
+              <li>Topics span security, memory management, and web development</li>
+            </ul>
+            <a class="cert-btn" href="https://drive.google.com/file/d/1b0DfOTmBE_XGkqBnEwU_6Yic1rfNe29C/view?usp=drive_link" target="_blank" rel="noopener">View Certificate ↗</a>
+          </article>
+          <article class="cert glass tilt reveal">
+            <div class="cert-top"><span class="cert-issuer">Harvard University</span><span class="badge ok">✓ Certified</span></div>
+            <h3>CS50 Introduction to Cybersecurity</h3>
+            <ul>
+              <li>Cybersecurity fundamentals for both technical and non-technical contexts</li>
+              <li>Risk management, system security, privacy, and cyber threat analysis</li>
+              <li>Completed 5+ assignments and a final project on real-world attack scenarios</li>
+            </ul>
+            <a class="cert-btn" href="https://drive.google.com/file/d/1INCXHIu4kIw2y6HSFJIpfJyEjOkPFi_t/view?usp=drive_link" target="_blank" rel="noopener">View Certificate ↗</a>
+          </article>
+          <article class="cert glass tilt reveal">
+            <div class="cert-top"><span class="cert-issuer">Innovista</span><span class="badge ok">✓ Certified</span></div>
+            <h3>Cybersecurity Specialization</h3>
+            <ul>
+              <li>Risk assessment, incident handling, and threat intelligence workflows</li>
+              <li>Business Continuity Planning (BCP) &amp; Disaster Recovery (DR) strategies</li>
+              <li>Network security, encryption techniques, and access control implementation</li>
+              <li>Hands-on labs and real-world attack simulations</li>
+            </ul>
+            <a class="cert-btn" href="https://drive.google.com/file/d/1iPfNA8_bAhrCbDThdy9KODAZ8-Vwt36n/view?usp=drive_link" target="_blank" rel="noopener">View Certificate ↗</a>
+          </article>
+          <article class="cert glass tilt reveal">
+            <div class="cert-top"><span class="cert-issuer">Bano Qabil</span><span class="badge ok">✓ Certified</span></div>
+            <h3>Advanced Cybersecurity Course</h3>
+            <ul>
+              <li>CIA Triad, SOC operations, Red Team vs Blue Team methodologies</li>
+              <li>Network security, OSI model, TCP/IP protocols, and SIEM fundamentals</li>
+              <li>IDS/IPS, MITRE ATT&amp;CK framework, and threat modeling</li>
+              <li>Windows/Linux security hardening and Active Directory management</li>
+              <li>Practical labs via TryHackMe platform</li>
+            </ul>
+            <span class="cert-btn is-pending">Certificate link coming soon</span>
+          </article>
+          <article class="cert glass tilt reveal">
+            <div class="cert-top"><span class="cert-issuer">Hunarmand Punjab</span><span class="badge wip">◉ In Progress</span></div>
+            <h3>National Cybersecurity Program</h3>
+            <ul>
+              <li>Cybersecurity fundamentals and security awareness best practices</li>
+              <li>Risk management frameworks and threat identification</li>
+              <li>Network security fundamentals and digital defense strategies</li>
+            </ul>
+            <span class="cert-btn is-pending">Certificate Pending</span>
+          </article>
+          <article class="cert glass tilt reveal">
+            <div class="cert-top"><span class="cert-issuer">Hunarmand Punjab</span><span class="badge wip">◉ In Progress</span></div>
+            <h3>Pentesting &amp; Web Hacking</h3>
+            <ul>
+              <li>Web application security and vulnerability assessment techniques</li>
+              <li>Penetration testing fundamentals and reconnaissance methodologies</li>
+              <li>Security testing workflows and OWASP security concepts</li>
+            </ul>
+            <span class="cert-btn is-pending">Certificate Pending</span>
+          </article>
+          <article class="cert glass tilt reveal">
+            <div class="cert-top"><span class="cert-issuer">Bano Qabil Sahiwal</span><span class="badge wip">◉ In Progress</span></div>
+            <h3>Backend Development</h3>
+            <ul>
+              <li>Backend fundamentals, server-side programming, and application architecture</li>
+              <li>Database integration, API design, and RESTful service development</li>
+              <li>Secure backend development practices and data protection principles</li>
+            </ul>
+            <span class="cert-btn is-pending">Certificate Pending</span>
+          </article>
         </div>
       </div>
+    </section>
 
-      <div class="project-item">
-        <div class="project-header" data-target="proj3">
-          <div class="project-num">03</div>
-          <div class="project-info">
-            <div class="project-name">Amazon Clone</div>
-            <div class="project-stack">
-              <span class="stack-tag">HTML</span>
-              <span class="stack-tag">CSS</span>
-              <span class="stack-tag">Responsive Design</span>
-            </div>
-          </div>
-          <div class="project-arrow">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </div>
+    <!-- SKILLS -->
+    <section id="skills" class="section" data-label="Skills">
+      <div class="wrap split">
+        <div class="col">
+          <p class="eyebrow">03 — Expertise</p>
+          <h2 class="title" data-scramble>Tools &amp; Technologies</h2>
+          <p class="lead reveal">That sphere is my stack, orbiting in real time. Drag it, spin it, throw it.</p>
+          <ul class="skill-list reveal" id="skillList">
+            <li data-group="web"><span>HTML5</span><em>Expert</em></li>
+            <li data-group="web"><span>CSS3</span><em>Expert</em></li>
+            <li data-group="web"><span>JavaScript ES6+</span><em>Proficient</em></li>
+            <li data-group="web"><span>Tailwind CSS</span><em>Proficient</em></li>
+            <li data-group="back"><span>Python · Flask</span><em>Intermediate</em></li>
+            <li data-group="back"><span>SQLite</span><em>Intermediate</em></li>
+            <li data-group="sec"><span>Network Security</span><em>Intermediate</em></li>
+            <li data-group="sec"><span>Risk Management</span><em>Intermediate</em></li>
+            <li data-group="sec"><span>SIEM · IDS/IPS</span><em>Foundational</em></li>
+            <li data-group="sec"><span>MITRE ATT&amp;CK</span><em>Foundational</em></li>
+            <li data-group="web"><span>Figma</span><em>Intermediate</em></li>
+            <li data-group="web"><span>SEO</span><em>Proficient</em></li>
+          </ul>
         </div>
-        <div class="project-body" id="proj3">
-          <div class="project-body-inner">
-            <p class="project-desc">A pixel-perfect Amazon homepage clone reproducing the full eCommerce layout: navigation, hero banners, product card grids, and footer. Fully responsive across all breakpoints, demonstrating advanced CSS layout mastery.</p>
-            <div class="project-links">
-              <a class="project-link" href="https://rafey581.github.io/amazon-clone-website.github.io/" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Live Demo
-              </a>
-              <a class="project-link" href="https://github.com/rafey581/amazon-clone-website.github.io" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-                GitHub
-              </a>
-            </div>
-          </div>
+        <div class="col col-space sphere-zone" id="sphereZone" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS (pinned 3D carousel) -->
+    <section id="projects" class="section" data-label="Work">
+      <div class="pin">
+        <div class="wrap proj-head">
+          <p class="eyebrow">04 — Work</p>
+          <h2 class="title" data-scramble>Selected Projects</h2>
+        </div>
+        <ol class="project-list" id="projectList">
+          <li class="project" data-tex="emart">
+            <span class="p-num">01</span>
+            <h3>E-Mart — E-Commerce Platform</h3>
+            <p class="p-tags"><span>HTML</span><span>Tailwind CSS</span><span>JavaScript</span><span>LocalStorage</span></p>
+            <p class="p-desc">A fully responsive e-commerce web application with a complete product ecosystem and admin control panel. Built with a static data architecture and LocalStorage persistence for a seamless, backend-free shopping experience.</p>
+            <ul class="p-points"><li>Product browsing, search, cart, and wishlist management</li><li>Admin dashboard: add, edit, and delete products in real-time</li><li>Responsive across all screen sizes using Tailwind CSS</li></ul>
+            <p class="p-links"><a href="https://emart.infinityfreeapp.com/" target="_blank" rel="noopener">Live Demo ↗</a></p>
+          </li>
+          <li class="project" data-tex="intent">
+            <span class="p-num">02</span>
+            <h3>Intent vs Reality — CS50 Final Project</h3>
+            <p class="p-tags"><span>Python</span><span>Flask</span><span>SQLite</span><span>JavaScript</span><span>Chart.js</span></p>
+            <p class="p-desc">A full-stack productivity web application developed as the Harvard CS50x final project. Bridges the gap between intended and actual work output through real-time tracking and behavioral analytics.</p>
+            <ul class="p-points"><li>Flask backend with SQLite for persistent session and task data</li><li>Real-time JavaScript timer for live task duration tracking</li><li>Chart.js dashboard comparing estimates vs actuals</li></ul>
+            <p class="p-links"><a href="https://github.com/rafey581" target="_blank" rel="noopener">GitHub ↗</a></p>
+          </li>
+          <li class="project" data-tex="/assets/tex/amazon.webp">
+            <span class="p-num">03</span>
+            <h3>Amazon Clone</h3>
+            <p class="p-tags"><span>HTML</span><span>CSS</span><span>Responsive Design</span></p>
+            <p class="p-desc">A pixel-perfect Amazon homepage clone reproducing the full eCommerce layout: navigation, hero banners, product card grids, and footer. Fully responsive across all breakpoints, demonstrating advanced CSS layout mastery.</p>
+            <p class="p-links"><a href="https://rafey581.github.io/amazon-clone-website.github.io/" target="_blank" rel="noopener">Live Demo ↗</a><a href="https://github.com/rafey581/amazon-clone-website.github.io" target="_blank" rel="noopener">GitHub ↗</a></p>
+          </li>
+          <li class="project" data-tex="/assets/tex/blog-world.webp">
+            <span class="p-num">04</span>
+            <h3>Blog World</h3>
+            <p class="p-tags"><span>HTML</span><span>CSS</span><span>SEO</span></p>
+            <p class="p-desc">An SEO-optimized blog platform with semantic HTML structure, clean typography, intuitive navigation, and properly structured meta tags. Scores highly on readability, accessibility, and search engine discoverability audits.</p>
+            <p class="p-links"><a href="https://rafey581.github.io/blog-world.github.io/" target="_blank" rel="noopener">Live Demo ↗</a><a href="https://github.com/rafey581/blog-world.github.io" target="_blank" rel="noopener">GitHub ↗</a></p>
+          </li>
+          <li class="project" data-tex="/assets/tex/samsung.webp">
+            <span class="p-num">05</span>
+            <h3>Samsung Website Clone</h3>
+            <p class="p-tags"><span>HTML</span><span>CSS</span><span>Responsive Design</span></p>
+            <p class="p-desc">A fully responsive Samsung.com clone built with pure HTML and CSS, reproducing the brand's modern product sections, hero banners, and navigation system with precise visual fidelity and clean, maintainable code.</p>
+            <p class="p-links"><a href="https://rafey581.github.io/samsung-website-clone.github.io/" target="_blank" rel="noopener">Live Demo ↗</a><a href="https://github.com/rafey581/samsung-website-clone.github.io" target="_blank" rel="noopener">GitHub ↗</a></p>
+          </li>
+          <li class="project" data-tex="/assets/tex/game-x-o.webp">
+            <span class="p-num">06</span>
+            <h3>Tic Tac Toe Game</h3>
+            <p class="p-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></p>
+            <p class="p-desc">An interactive browser-based Tic Tac Toe game featuring complete win/draw detection logic, real-time score tracking, and clean state management — all implemented with vanilla JavaScript, no libraries.</p>
+            <p class="p-links"><a href="https://rafey581.github.io/Tic-Tac-Toe-Game.github.io/" target="_blank" rel="noopener">Live Demo ↗</a><a href="https://github.com/rafey581/Tic-Tac-Toe-Game.github.io" target="_blank" rel="noopener">GitHub ↗</a></p>
+          </li>
+          <li class="project" data-tex="/assets/tex/rockpaperscicors.webp">
+            <span class="p-num">07</span>
+            <h3>Rock Paper Scissors</h3>
+            <p class="p-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></p>
+            <p class="p-desc">A polished interactive game against an AI opponent with dynamic win/lose/draw logic, animated choice reveals, and real-time score tracking. Demonstrates JavaScript event handling and DOM manipulation proficiency.</p>
+            <p class="p-links"><a href="https://rafey581.github.io/Rock-Paper-Scissors-Game.github.io/" target="_blank" rel="noopener">Live Demo ↗</a><a href="https://github.com/rafey581/Rock-Paper-Scissors-Game.github.io" target="_blank" rel="noopener">GitHub ↗</a></p>
+          </li>
+        </ol>
+        <div class="proj-nav" aria-hidden="true">
+          <button class="proj-arrow" id="projPrev" data-magnetic>←</button>
+          <div class="proj-count"><b id="projIdx">01</b> / 07</div>
+          <button class="proj-arrow" id="projNext" data-magnetic>→</button>
         </div>
       </div>
+    </section>
 
-      <div class="project-item">
-        <div class="project-header" data-target="proj4">
-          <div class="project-num">04</div>
-          <div class="project-info">
-            <div class="project-name">Blog World</div>
-            <div class="project-stack">
-              <span class="stack-tag">HTML</span>
-              <span class="stack-tag">CSS</span>
-              <span class="stack-tag">SEO</span>
-            </div>
-          </div>
-          <div class="project-arrow">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </div>
-        </div>
-        <div class="project-body" id="proj4">
-          <div class="project-body-inner">
-            <p class="project-desc">An SEO-optimized blog platform with semantic HTML structure, clean typography, intuitive navigation, and properly structured meta tags. Scores highly on readability, accessibility, and search engine discoverability audits.</p>
-            <div class="project-links">
-              <a class="project-link" href="https://rafey581.github.io/blog-world.github.io/" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Live Demo
-              </a>
-              <a class="project-link" href="https://github.com/rafey581/blog-world.github.io" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-                GitHub
-              </a>
-            </div>
-          </div>
+    <!-- SERVICES -->
+    <section id="services" class="section" data-label="Services">
+      <div class="wrap">
+        <p class="eyebrow">05 — Offerings</p>
+        <h2 class="title" data-scramble>What I Deliver</h2>
+        <div class="service-grid">
+          <article class="service glass tilt reveal"><i class="s-icon">⟨/⟩</i><h3>Secure Web Development</h3><p>Modern, fully responsive web applications built with security-first architecture. Clean code, optimized performance, and scalable structure — from landing pages to full-stack platforms.</p></article>
+          <article class="service glass tilt reveal"><i class="s-icon">⛨</i><h3>Website Security &amp; Vulnerability Assessment</h3><p>Systematic security audits to identify and remediate vulnerabilities in existing web applications. Covers XSS, SQL injection, broken authentication, and misconfigured access controls.</p></article>
+          <article class="service glass tilt reveal"><i class="s-icon">⊛</i><h3>Secure Authentication Systems</h3><p>Implementation of robust login flows, session management, and access control models (MAC, DAC, RBAC). Protect user data and enforce the principle of least privilege across your application.</p></article>
+          <article class="service glass tilt reveal"><i class="s-icon">◎</i><h3>Performance Optimization &amp; SEO</h3><p>End-to-end performance audits, Core Web Vitals improvement, structured data implementation, and on-page SEO — ensuring your site ranks well and loads fast on every device.</p></article>
+          <article class="service glass tilt reveal"><i class="s-icon">✉</i><h3>Email Security &amp; Spam Prevention</h3><p>Configure SPF, DKIM, and DMARC DNS records so your emails land in the inbox — not the spam folder. Includes domain reputation analysis, email header inspection, and deliverability optimization.</p></article>
+          <article class="service glass tilt reveal"><i class="s-icon">☏</i><h3>WhatsApp Account Recovery</h3><p>Lost access after a SIM swap, phishing attack, or account hijacking? I'll guide you through the official recovery process and re-secure your account — including Two-Step Verification to prevent future attacks.</p></article>
+          <article class="service glass tilt reveal"><i class="s-icon">⌁</i><h3>Network Traffic Monitoring &amp; Reporting</h3><p>Capture and analyze network packets on your own infrastructure to detect unusual activity, unauthorized connections, and bottlenecks. Delivered as a clear report with findings, risk levels, and recommended actions.</p></article>
+          <article class="service glass tilt reveal"><i class="s-icon">⚿</i><h3>Credential Security Analysis</h3><p>Audit your organization's credentials for exposure — check for leaked passwords in breach databases, identify weak or reused credentials, and implement secure password policies.</p></article>
         </div>
       </div>
+    </section>
 
-      <div class="project-item">
-        <div class="project-header" data-target="proj5">
-          <div class="project-num">05</div>
-          <div class="project-info">
-            <div class="project-name">Samsung Website Clone</div>
-            <div class="project-stack">
-              <span class="stack-tag">HTML</span>
-              <span class="stack-tag">CSS</span>
-              <span class="stack-tag">Responsive Design</span>
-            </div>
-          </div>
-          <div class="project-arrow">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </div>
+    <!-- CONTACT -->
+    <section id="contact" class="section" data-label="Contact">
+      <div class="wrap split">
+        <div class="col">
+          <p class="eyebrow">06 — Connect</p>
+          <h2 class="title" data-scramble>Let's Build Something Secure</h2>
+          <p class="lead reveal">Transmitting from Sahiwal, Punjab → anywhere on the planet. I'm available for freelance projects and full-time opportunities — a high-performance web app, a security audit, or a complete digital product.</p>
+          <form class="contact-form glass reveal" id="contactForm">
+            <div class="field"><input id="fName" name="name" required placeholder=" " autocomplete="name" /><label for="fName">Your Name</label></div>
+            <div class="field"><input id="fEmail" name="email" type="email" required placeholder=" " autocomplete="email" /><label for="fEmail">Email Address</label></div>
+            <div class="field"><input id="fSubject" name="subject" placeholder=" " /><label for="fSubject">Subject</label></div>
+            <div class="field"><textarea id="fMsg" name="message" rows="4" required placeholder=" "></textarea><label for="fMsg">Message</label></div>
+            <button class="btn btn-primary" type="submit" data-magnetic><span>Encrypt &amp; Send →</span></button>
+            <p class="form-note" id="formNote" role="status"></p>
+          </form>
+          <ul class="contact-links reveal">
+            <li><a href="mailto:itsstranger@gmail.com">itsstranger@gmail.com</a></li>
+            <li><a href="tel:+923206912491">+92 320 6912491</a></li>
+            <li><a href="https://github.com/rafey581" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://www.facebook.com/abdul.rafey.528316" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://wa.link/kceoyh" target="_blank" rel="noopener">WhatsApp</a></li>
+          </ul>
         </div>
-        <div class="project-body" id="proj5">
-          <div class="project-body-inner">
-            <p class="project-desc">A fully responsive Samsung.com clone built with pure HTML and CSS, reproducing the brand's modern product sections, hero banners, and navigation system with precise visual fidelity and clean, maintainable code.</p>
-            <div class="project-links">
-              <a class="project-link" href="https://rafey581.github.io/samsung-website-clone.github.io/" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Live Demo
-              </a>
-              <a class="project-link" href="https://github.com/rafey581/samsung-website-clone.github.io" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+        <div class="col col-space" aria-hidden="true"></div>
       </div>
+    </section>
 
-      <div class="project-item">
-        <div class="project-header" data-target="proj6">
-          <div class="project-num">06</div>
-          <div class="project-info">
-            <div class="project-name">Tic Tac Toe Game</div>
-            <div class="project-stack">
-              <span class="stack-tag">HTML</span>
-              <span class="stack-tag">CSS</span>
-              <span class="stack-tag">JavaScript</span>
-            </div>
-          </div>
-          <div class="project-arrow">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </div>
-        </div>
-        <div class="project-body" id="proj6">
-          <div class="project-body-inner">
-            <p class="project-desc">An interactive browser-based Tic Tac Toe game featuring complete win/draw detection logic, real-time score tracking, and clean state management — all implemented with vanilla JavaScript, no libraries.</p>
-            <div class="project-links">
-              <a class="project-link" href="https://rafey581.github.io/Tic-Tac-Toe-Game.github.io/" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Live Demo
-              </a>
-              <a class="project-link" href="https://github.com/rafey581/Tic-Tac-Toe-Game.github.io" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+  </main>
 
-      <div class="project-item">
-        <div class="project-header" data-target="proj7">
-          <div class="project-num">07</div>
-          <div class="project-info">
-            <div class="project-name">Rock Paper Scissors</div>
-            <div class="project-stack">
-              <span class="stack-tag">HTML</span>
-              <span class="stack-tag">CSS</span>
-              <span class="stack-tag">JavaScript</span>
-            </div>
-          </div>
-          <div class="project-arrow">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
-            </svg>
-          </div>
-        </div>
-        <div class="project-body" id="proj7">
-          <div class="project-body-inner">
-            <p class="project-desc">A polished interactive game against an AI opponent with dynamic win/lose/draw logic, animated choice reveals, and real-time score tracking. Demonstrates JavaScript event handling and DOM manipulation proficiency.</p>
-            <div class="project-links">
-              <a class="project-link" href="https://rafey581.github.io/Rock-Paper-Scissors-Game.github.io/" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Live Demo
-              </a>
-              <a class="project-link" href="https://github.com/rafey581/Rock-Paper-Scissors-Game.github.io" target="_blank">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                </svg>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-logo">Abdul Rafey<span>.</span></div>
+      <p>© <span id="year">2025</span> — Web Developer &amp; Cybersecurity Specialist · Built with Three.js &amp; raw WebGL shaders</p>
+      <a href="#hero" class="back-top" data-magnetic>↑ Return to core</a>
     </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="section-label">05 — Offerings</div>
-    <h2 class="section-title">What I<br><em>Deliver</em></h2>
-    <div class="services-grid reveal">
-
-      <div class="service-card">
-        <div class="service-icon">⟨/⟩</div>
-        <div class="service-title">Secure Web Development</div>
-        <div class="service-desc">Modern, fully responsive web applications built with security-first architecture. Clean code, optimized performance, and scalable structure — from landing pages to full-stack platforms.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">🔒</div>
-        <div class="service-title">Website Security & Vulnerability Assessment</div>
-        <div class="service-desc">Systematic security audits to identify and remediate vulnerabilities in existing web applications. Covers XSS, SQL injection, broken authentication, and misconfigured access controls.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">⊛</div>
-        <div class="service-title">Secure Authentication Systems</div>
-        <div class="service-desc">Implementation of robust login flows, session management, and access control models (MAC, DAC, RBAC). Protect user data and enforce the principle of least privilege across your application.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">◎</div>
-        <div class="service-title">Performance Optimization & SEO</div>
-        <div class="service-desc">End-to-end performance audits, Core Web Vitals improvement, structured data implementation, and on-page SEO — ensuring your site ranks well and loads fast on every device.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">📧</div>
-        <div class="service-title">Email Security & Spam Prevention</div>
-        <div class="service-desc">Configure SPF, DKIM, and DMARC DNS records so your emails land in the inbox — not the spam folder. Includes domain reputation analysis, email header inspection, and deliverability optimization for businesses and personal brands.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">💬</div>
-        <div class="service-title">WhatsApp Account Recovery</div>
-        <div class="service-desc">Lost access to your WhatsApp after a SIM swap, phishing attack, or account hijacking? I'll guide you through the official two-step recovery process and re-secure your account — fast. Includes activating Two-Step Verification to prevent future attacks.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">📡</div>
-        <div class="service-title">Network Traffic Monitoring & Reporting</div>
-        <div class="service-desc">Capture and analyze network packets on your own infrastructure to detect unusual activity, unauthorized connections, and performance bottlenecks. Delivered as a clear report with findings, risk levels, and recommended actions.</div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">🔑</div>
-        <div class="service-title">Credential Security Analysis</div>
-        <div class="service-desc">Audit your organization's credentials for exposure — check for leaked passwords in breach databases, identify weak or reused credentials, and implement secure password policies. Helps eliminate the #1 attack vector before threat actors exploit it.</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-label">06 — Connect</div>
-    <h2 class="section-title">Let's Build<br><em>Something Secure</em></h2>
-    <div class="contact-grid">
-      <div class="contact-left reveal">
-        <h3>Have a project in mind?<br>Let's talk.</h3>
-        <p>I'm available for freelance projects and full-time opportunities. Whether you need a high-performance web application, a security audit, or a complete digital product — I bring both development expertise and security awareness to the table.</p>
-        <div class="contact-info">
-          <div class="contact-row">
-            <div class="contact-row-icon">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <div class="contact-row-key">Email</div>
-              <div class="contact-row-val"><a href="mailto:itsstranger@gmail.com">itsstranger@gmail.com</a></div>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="contact-row-icon">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </div>
-            <div>
-              <div class="contact-row-key">Phone</div>
-              <div class="contact-row-val"><a href="tel:+923206912491">+92 320 6912491</a></div>
-            </div>
-          </div>
-          <div class="contact-row">
-            <div class="contact-row-icon">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <div>
-              <div class="contact-row-key">Location</div>
-              <div class="contact-row-val">Sahiwal, Punjab, Pakistan</div>
-            </div>
-          </div>
-        </div>
-        <div class="social-row">
-          <a class="social-btn" href="https://github.com/rafey581" target="_blank" title="GitHub">
-            <svg fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-          </a>
-          <a class="social-btn" href="https://www.facebook.com/abdul.rafey.528316" target="_blank" title="Facebook">
-            <svg fill="currentColor" viewBox="0 0 24 24">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-            </svg>
-          </a>
-          <a class="social-btn" href="https://wa.link/kceoyh" target="_blank" title="WhatsApp">
-            <svg fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="reveal reveal-delay-2">
-        <form class="contact-form" id="contactForm">
-          <div class="form-field">
-            <label class="form-label" for="fname">Your Name</label>
-            <input class="form-input" id="fname" type="text" placeholder="e.g. John Doe" required />
-          </div>
-          <div class="form-field">
-            <label class="form-label" for="femail">Email Address</label>
-            <input class="form-input" id="femail" type="email" placeholder="john@example.com" required />
-          </div>
-          <div class="form-field">
-            <label class="form-label" for="fsubject">Subject</label>
-            <input class="form-input" id="fsubject" type="text" placeholder="Project inquiry, security audit..." />
-          </div>
-          <div class="form-field">
-            <label class="form-label" for="fmsg">Message</label>
-            <textarea class="form-textarea" id="fmsg" placeholder="Tell me about your project or security needs..." required></textarea>
-          </div>
-          <button class="form-btn" type="submit" id="formBtn">Send Message →</button>
-          <div id="formSuccess" style="display:none; color:var(--teal); font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.08em;">
-            ✓ Message sent! I'll get back to you within 24 hours.
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">Abdul Rafey</div>
-    <div class="footer-copy">© 2025 — Web Developer &amp; Cybersecurity Specialist</div>
-    <nav class="footer-nav">
-      <a href="#about">About</a>
-      <a href="#certifications">Certs</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Work</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
   </footer>
 
-  <script>
-    // ── Custom cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    });
-    function animRing() {
-      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(animRing);
-    }
-    animRing();
-    document.querySelectorAll('a, button, .project-header, .skill-cell, .cert-card, .service-card').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.width = '6px'; cursor.style.height = '6px';
-        ring.style.width = '60px'; ring.style.height = '60px';
-        ring.style.opacity = '0.3';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.width = '12px'; cursor.style.height = '12px';
-        ring.style.width = '36px'; ring.style.height = '36px';
-        ring.style.opacity = '0.5';
-      });
-    });
+  <!-- Easter-egg terminal -->
+  <div class="term" id="term" aria-hidden="true">
+    <div class="term-win glass">
+      <div class="loader-head"><span></span><span></span><span></span><em>guest@rafey.me — type "help"</em><button id="termClose" aria-label="Close terminal">×</button></div>
+      <div class="term-out" id="termOut"></div>
+      <label class="term-line"><b>guest@rafey.me:~$</b><input id="termIn" autocomplete="off" spellcheck="false" aria-label="Terminal input" /></label>
+    </div>
+  </div>
 
-    // ── Progress bar
-    window.addEventListener('scroll', () => {
-      const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      document.getElementById('progress').style.width = scrolled + '%';
-    });
-
-    // ── Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(r => revealObs.observe(r));
-
-    // ── Skill bars
-    const skillObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-            bar.style.width = bar.dataset.width + '%';
-          });
-          skillObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.skills-grid').forEach(g => skillObs.observe(g));
-
-    // ── Counter animation
-    const counterObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          document.querySelectorAll('[data-count]').forEach(el => {
-            const target = +el.dataset.count;
-            let current = 0;
-            const step = Math.ceil(target / 30);
-            const timer = setInterval(() => {
-              current += step;
-              if (current >= target) { current = target; clearInterval(timer); }
-              el.textContent = current + '+';
-            }, 40);
-          });
-          counterObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    const heroEl = document.getElementById('hero');
-    if (heroEl) counterObs.observe(heroEl);
-
-    // ── Accordion projects
-    document.querySelectorAll('.project-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const targetId = header.dataset.target;
-        const body = document.getElementById(targetId);
-        const isOpen = body.classList.contains('open');
-        document.querySelectorAll('.project-body').forEach(b => b.classList.remove('open'));
-        if (!isOpen) body.classList.add('open');
-      });
-    });
-
-    // ── Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-    document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
-
-    // ── Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const t = document.querySelector(a.getAttribute('href'));
-        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        mobileMenu.classList.remove('open');
-      });
-    });
-
-    // ── Contact form
-    document.getElementById('contactForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const btn = document.getElementById('formBtn');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-        document.getElementById('contactForm').reset();
-      }, 1200);
-    });
-  </script>
+  <noscript><style>#loader{display:none}body.is-loading{overflow:auto}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </body>
-
 </html>
