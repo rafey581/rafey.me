@@ -221,11 +221,22 @@ Lighthouse (desktop & mobile): **SEO 100 · Accessibility 100 · Best Practices 
 
 ---
 
+## ◈ Hosting
+
+AWS: private S3 bucket → CloudFront (HTTPS, HTTP/3, strict security headers) → Route 53.
+Every push to `main` deploys via GitHub Actions with OIDC (no stored AWS keys).
+Setup guide: [docs/DEPLOY-AWS.md](docs/DEPLOY-AWS.md).
+
+---
+
 ## ◈ File Structure
 
 ```
 rafey.me/
 ├── index.html              ← Main portfolio (markup + SEO)
+├── infra/aws/site.yml      ← AWS stack: S3 + CloudFront + ACM + Route 53 + deploy role
+├── .github/workflows/      ← deploy-aws.yml — auto-deploy on push to main
+├── docs/DEPLOY-AWS.md      ← Step-by-step hosting guide
 ├── assets/css/style.css    ← UI styles
 ├── assets/js/main.js       ← UI layer: loader, cursor, scroll, terminal
 ├── assets/js/scene.js      ← Three.js world + shaders

@@ -4,12 +4,12 @@
 // Each <section> owns a set-piece: core → helix → lock → skill
 // sphere → project carousel → wave terrain → globe.
 // ═══════════════════════════════════════════════════════════
-import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
-import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import * as THREE from '../vendor/three/build/three.module.min.js';
+import { EffectComposer } from '../vendor/three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from '../vendor/three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from '../vendor/three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { ShaderPass } from '../vendor/three/examples/jsm/postprocessing/ShaderPass.js';
+import { OutputPass } from '../vendor/three/examples/jsm/postprocessing/OutputPass.js';
 
 const GOLD = new THREE.Color('#e8b84b');
 const TEAL = new THREE.Color('#2ffcb1');
