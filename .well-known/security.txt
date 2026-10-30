@@ -1,0 +1,5 @@
+# Security contact for rafey.me (RFC 9116)
+Contact: mailto:itsrafey.official@gmail.com
+Expires: 2027-10-30T00:00:00.000Z
+Preferred-Languages: en, ur
+Canonical: https://rafey.me/.well-known/security.txt

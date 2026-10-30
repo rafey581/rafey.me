@@ -37,19 +37,23 @@ async function typeBoot() {
     const [txt, cls, tag] = bootLines[i];
     const line = document.createElement('div');
     bootLog.appendChild(line);
-    for (const ch of txt) { line.textContent += ch; if (fast && Math.random() > 0.55) await wait(8); }
-    if (tag) { await wait(90 * fast); const s = document.createElement('span'); s.className = cls; s.textContent = tag; line.appendChild(s); }
+    line.textContent = txt; if (fast) await wait(35);
+    if (tag) { await wait(40 * fast); const s = document.createElement('span'); s.className = cls; s.textContent = tag; line.appendChild(s); }
     else if (cls) line.className = cls;
     fakeProgress = (i + 1) / bootLines.length; setBar();
-    await wait(70 * fast);
+    await wait(25 * fast);
   }
 }
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
 // ── Split hero letters ──────────────────────────────────
 $$('[data-split]').forEach(el => {
+  // keep the real word for crawlers & screen readers; animate aria-hidden letters
   const txt = el.textContent; el.textContent = '';
-  [...txt].forEach(c => { const s = document.createElement('span'); s.className = 'ch'; s.textContent = c; el.appendChild(s); });
+  const sr = document.createElement('span'); sr.className = 'sr-only'; sr.textContent = txt; el.appendChild(sr);
+  const vis = document.createElement('span'); vis.setAttribute('aria-hidden', 'true'); el.appendChild(vis);
+  // letters are drawn via CSS content so the word exists once in the DOM text
+  [...txt].forEach(c => { const s = document.createElement('span'); s.className = 'ch'; s.dataset.c = c; vis.appendChild(s); });
 });
 const chars = $$('.hero-name .ch');
 
@@ -73,7 +77,7 @@ let world = null;
   }
   realProgress = 1;
   await typing; setBar();
-  await wait(250);
+  await wait(120);
   finishBoot();
 })();
 
@@ -174,7 +178,7 @@ if (fine && !reducedMotion) {
 
 // ── Typing role line ────────────────────────────────────
 function startTyping() {
-  const roles = ['Web Developer', 'Cybersecurity Specialist', 'Harvard CS50 Certified', 'Security-first Engineer', 'Based in Sahiwal, Pakistan'];
+  const roles = ['Harvard CS50 certified', 'Security-first engineer', 'Building secure web apps', 'Open to freelance work'];
   const el = $('#typeRole');
   let i = 0;
   (async function cycle() {

@@ -622,6 +622,7 @@ export async function createWorld({ canvas, sections, projects, skills, reducedM
     states.skills = { cam: V(0, 0, -138 + fz), look: V(0, 0, -150) };
     states.projects = { cam: V(0, 0.4, -215 + CR * carousel.userData.baseScale + (mobile ? 9 : 9.5)), look: V(0, mobile ? 0.6 : 0.2, -215) };
     states.services = { cam: V(0, 1.5, -262), look: V(0, -2.5, -282) };
+    states.faq = { cam: V(mobile ? 0 : 1.5, 3.2, -289), look: V(mobile ? 0 : 4.5, -3.5, -306) };
     states.contact = { cam: V(0, 0, -318 + fz), look: V(0, 0, -330) };
   }
 
@@ -698,7 +699,7 @@ export async function createWorld({ canvas, sections, projects, skills, reducedM
   // ── State & loop ──────────────────────────────────────
   const state = {
     mouse: mouseS, warp: 0, pulse: 0, vel: 0,
-    focus: { hero: 1, about: 0, certifications: 0, skills: 0, projects: 0, services: 0, contact: 0 },
+    focus: { hero: 1, about: 0, certifications: 0, skills: 0, projects: 0, services: 0, faq: 0, contact: 0 },
     project: 0, depth: 0, fps: 60, section: 'hero',
   };
   const camPos = camera.position.clone(), camLook = new THREE.Vector3(0, 0, 0);

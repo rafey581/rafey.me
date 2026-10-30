@@ -203,19 +203,20 @@ CYBERSECURITY
 
 ## ◈ SEO
 
-This portfolio implements a **world-class SEO stack**:
+Lighthouse (desktop & mobile): **SEO 100 · Accessibility 100 · Best Practices 100**
 
 ```
-✦ 7 JSON-LD Structured Data schemas
-  └─ Person · WebSite · ProfessionalService · BreadcrumbList
-     FAQPage · ItemList · ProfilePage
-
-✦ Full Open Graph (Facebook, LinkedIn, WhatsApp)
-✦ Twitter Card with rich metadata labels
-✦ Local SEO — GPS coordinates for Sahiwal, Pakistan
-✦ XML Sitemap with image namespace
-✦ robots.txt with Googlebot, Bingbot, Yandex, Applebot
-✦ PWA manifest with shortcuts + screenshots
+✦ One linked JSON-LD @graph — WebSite · ProfilePage · Person ·
+  ProfessionalService · ItemList (7 projects) · FAQPage
+  └─ every claim in the markup is also visible on the page
+✦ Visible FAQ section targeting real searches
+  ("who is Abdul Rafey", "web developer in Sahiwal", …)
+✦ Keyword-rich H1 · single canonical URL · correct Sahiwal geo
+✦ 1200×630 social preview card (Open Graph + X/Twitter)
+✦ Full icon set (SVG, 32, 180, 192, 512, maskable) + PWA manifest
+✦ Clean robots.txt · image sitemap · noindex 404 page
+✦ /.well-known/security.txt (RFC 9116) · .nojekyll for GitHub Pages
+✦ Real text in the DOM for crawlers — the 3D layer is progressive
 ```
 
 ---
@@ -231,7 +232,9 @@ rafey.me/
 ├── assets/vendor/three/    ← Three.js r160 (MIT)
 ├── assets/tex/             ← Optimised project textures (webp)
 ├── logo.html               ← Brand identity sheet
-├── sitemap.xml             ← Google indexing map
+├── sitemap.xml             ← Image sitemap
+├── 404.html                ← Custom not-found page
+├── .well-known/security.txt← Security contact (RFC 9116)
 ├── robots.txt              ← Crawler directives
 ├── manifest.json           ← PWA manifest
 └── seo-head-final.html     ← SEO head tag (reference)
