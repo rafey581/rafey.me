@@ -16,7 +16,7 @@
 
 [![Live Site](https://img.shields.io/badge/🌐_Live_Site-rafey.me-E8B84B?style=for-the-badge&logoColor=black)](https://rafey.me)
 [![GitHub](https://img.shields.io/badge/GitHub-rafey581-2FFCB1?style=for-the-badge&logo=github&logoColor=black)](https://github.com/rafey581)
-[![Email](https://img.shields.io/badge/Email-Itsstranger581@gmail.com-E8B84B?style=for-the-badge&logo=gmail&logoColor=black)](mailto:Itsstranger581@gmail.com)
+[![Email](https://img.shields.io/badge/Email-itsrafey.official@gmail.com-E8B84B?style=for-the-badge&logo=gmail&logoColor=black)](mailto:itsrafey.official@gmail.com)
 [![Location](https://img.shields.io/badge/📍_Location-Sahiwal,_Punjab,_Pakistan-2FFCB1?style=for-the-badge)](https://rafey.me)
 
 </div>
@@ -49,12 +49,13 @@ This is the source for **[rafey.me](https://rafey.me)** — my personal portfoli
 
 | Layer | Technology |
 |---|---|
-| **Structure** | HTML5 (Semantic) |
-| **Styling** | CSS3 — Custom properties, Grid, Flexbox, Animations |
-| **Interactivity** | Vanilla JavaScript ES6+ |
-| **Fonts** | DM Serif Display · Syne · IBM Plex Mono |
+| **3D / WebGL** | Three.js r160 (self-hosted in `assets/vendor`) · custom GLSL shaders |
+| **Post-processing** | Unreal bloom · chromatic aberration · film grain |
+| **Structure** | HTML5 (Semantic) — all content lives in the markup, the 3D layer reads from it |
+| **Styling** | CSS3 — custom properties, 3D transforms, backdrop-filter, `@property` |
+| **Interactivity** | Vanilla JavaScript ES modules — no build step |
+| **Fonts** | Syne · DM Serif Display · IBM Plex Mono |
 | **SEO** | JSON-LD Structured Data (7 schemas) · Open Graph · Twitter Card |
-| **PWA** | Web App Manifest · Service Worker ready |
 
 </div>
 
@@ -64,16 +65,18 @@ This is the source for **[rafey.me](https://rafey.me)** — my personal portfoli
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  ✦  Custom gold cursor with trailing ring                   │
-│  ✦  Scroll-triggered reveal animations                      │
-│  ✦  Animated skill bars (fill on scroll)                    │
-│  ✦  Accordion project list (01–07)                          │
-│  ✦  Animated hero stat counters                             │
-│  ✦  Scrolling tech-stack marquee ticker                     │
-│  ✦  Subtle golden grid background                           │
-│  ✦  Film-grain noise texture overlay                        │
-│  ✦  Full-screen mobile hamburger menu                       │
-│  ✦  Inline SVG favicon — no external file needed            │
+│  ✦  One continuous 3D world — the camera flies through it   │
+│     as you scroll, with warp streaks and camera roll        │
+│  ✦  Hero: noise-displaced shader core, click it to pulse    │
+│  ✦  About: rotating data double-helix with binary glyphs    │
+│  ✦  Certs: holographic vault lock that unlocks itself       │
+│  ✦  Skills: draggable 3D tag sphere of the stack            │
+│  ✦  Projects: pinned, curved shader carousel with ripples   │
+│  ✦  Services: animated particle wave terrain                │
+│  ✦  Contact: dotted globe with live arcs from Sahiwal       │
+│  ✦  Terminal boot loader · decrypting headings · 3D tilt    │
+│  ✦  Hidden shell — press ` (backtick) and type "help"       │
+│  ✦  Adaptive quality, reduced-motion + no-WebGL fallbacks   │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -200,20 +203,29 @@ CYBERSECURITY
 
 ## ◈ SEO
 
-This portfolio implements a **world-class SEO stack**:
+Lighthouse (desktop & mobile): **SEO 100 · Accessibility 100 · Best Practices 100**
 
 ```
-✦ 7 JSON-LD Structured Data schemas
-  └─ Person · WebSite · ProfessionalService · BreadcrumbList
-     FAQPage · ItemList · ProfilePage
-
-✦ Full Open Graph (Facebook, LinkedIn, WhatsApp)
-✦ Twitter Card with rich metadata labels
-✦ Local SEO — GPS coordinates for Sahiwal, Pakistan
-✦ XML Sitemap with image namespace
-✦ robots.txt with Googlebot, Bingbot, Yandex, Applebot
-✦ PWA manifest with shortcuts + screenshots
+✦ One linked JSON-LD @graph — WebSite · ProfilePage · Person ·
+  ProfessionalService · ItemList (7 projects) · FAQPage
+  └─ every claim in the markup is also visible on the page
+✦ Visible FAQ section targeting real searches
+  ("who is Abdul Rafey", "web developer in Sahiwal", …)
+✦ Keyword-rich H1 · single canonical URL · correct Sahiwal geo
+✦ 1200×630 social preview card (Open Graph + X/Twitter)
+✦ Full icon set (SVG, 32, 180, 192, 512, maskable) + PWA manifest
+✦ Clean robots.txt · image sitemap · noindex 404 page
+✦ /.well-known/security.txt (RFC 9116) · .nojekyll for GitHub Pages
+✦ Real text in the DOM for crawlers — the 3D layer is progressive
 ```
+
+---
+
+## ◈ Hosting
+
+AWS: private S3 bucket → CloudFront (HTTPS, HTTP/3, strict security headers) → Route 53.
+Every push to `main` deploys via GitHub Actions with OIDC (no stored AWS keys).
+Setup guide: [docs/DEPLOY-AWS.md](docs/DEPLOY-AWS.md).
 
 ---
 
@@ -221,9 +233,19 @@ This portfolio implements a **world-class SEO stack**:
 
 ```
 rafey.me/
-├── index.html              ← Main portfolio
+├── index.html              ← Main portfolio (markup + SEO)
+├── infra/aws/site.yml      ← AWS stack: S3 + CloudFront + ACM + Route 53 + deploy role
+├── .github/workflows/      ← deploy-aws.yml — auto-deploy on push to main
+├── docs/DEPLOY-AWS.md      ← Step-by-step hosting guide
+├── assets/css/style.css    ← UI styles
+├── assets/js/main.js       ← UI layer: loader, cursor, scroll, terminal
+├── assets/js/scene.js      ← Three.js world + shaders
+├── assets/vendor/three/    ← Three.js r160 (MIT)
+├── assets/tex/             ← Optimised project textures (webp)
 ├── logo.html               ← Brand identity sheet
-├── sitemap.xml             ← Google indexing map
+├── sitemap.xml             ← Image sitemap
+├── 404.html                ← Custom not-found page
+├── .well-known/security.txt← Security contact (RFC 9116)
 ├── robots.txt              ← Crawler directives
 ├── manifest.json           ← PWA manifest
 └── seo-head-final.html     ← SEO head tag (reference)
@@ -238,7 +260,7 @@ rafey.me/
 | | |
 |---|---|
 | 🌐 **Website** | [rafey.me](https://rafey.me) |
-| 📧 **Email** | [Itsstranger581@gmail.com](mailto:Itsstranger581@gmail.com) |
+| 📧 **Email** | [itsrafey.official@gmail.com](mailto:itsrafey.official@gmail.com) |
 | 📞 **Phone** | +92 320 6912491 |
 | 💻 **GitHub** | [github.com/rafey581](https://github.com/rafey581) |
 | 📘 **Facebook** | [facebook.com/abdul.rafey.528316](https://facebook.com/abdul.rafey.528316) |
