@@ -309,7 +309,7 @@ $('#contactForm').addEventListener('submit', e => {
   const bodyTxt = `${f.message.value}\n\n— ${f.name.value} (${f.email.value})`;
   world && world.pulse();
   $('#formNote').textContent = '> payload encrypted · opening your mail client…';
-  location.href = `mailto:itsstranger@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyTxt)}`;
+  location.href = `mailto:itsrafey.official@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyTxt)}`;
 });
 
 $('#year').textContent = new Date().getFullYear();
@@ -334,12 +334,12 @@ const commands = {
   skills: () => print(skills.map(s => `  <span class="${s.group === 'sec' ? 't' : 'c'}">▹</span> ${esc(s.name)}`).join('\n')),
   projects: () => print(projectEls.map((li, i) => `  <span class="c">${i + 1}</span>  ${esc(li.querySelector('h3').textContent)}`).join('\n') + '\n  → type <span class="t">open 3</span>'),
   certs: () => print($$('.cert h3').map(h => '  ✓ ' + esc(h.textContent)).join('\n')),
-  contact: () => print('  email  <span class="t">itsstranger@gmail.com</span>\n  phone  +92 320 6912491\n  github github.com/rafey581'),
+  contact: () => print('  email  <span class="t">itsrafey.official@gmail.com</span>\n  phone  +92 320 6912491\n  github github.com/rafey581'),
   open: n => { const p = projects[+n - 1]; if (p) { print('  launching ' + esc(p.url)); window.open(p.url, '_blank', 'noopener'); } else print('<span class="r">  usage: open 1-7</span>'); },
   goto: s => { const el = s && document.getElementById(s); if (el) { toggleTerm(false); window.scrollTo({ top: el.offsetTop, behavior: 'smooth' }); } else print('<span class="r">  unknown section</span>'); },
   pulse: () => { world && world.pulse(); print('  <span class="t">core destabilised ⚡</span>'); },
   sudo: a => a === 'hire-rafey'
-    ? (print('<span class="t">  [sudo] access granted. drafting offer letter…</span>'), setTimeout(() => location.href = 'mailto:itsstranger@gmail.com?subject=' + encodeURIComponent("Let's work together"), 700))
+    ? (print('<span class="t">  [sudo] access granted. drafting offer letter…</span>'), setTimeout(() => location.href = 'mailto:itsrafey.official@gmail.com?subject=' + encodeURIComponent("Let's work together"), 700))
     : print('<span class="r">  guest is not in the sudoers file. This incident will be reported.</span>'),
   ls: () => print('  ' + sections.map(s => s.id + '/').join('  ')),
   clear: () => { out.innerHTML = ''; },

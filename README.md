@@ -16,7 +16,7 @@
 
 [![Live Site](https://img.shields.io/badge/🌐_Live_Site-rafey.me-E8B84B?style=for-the-badge&logoColor=black)](https://rafey.me)
 [![GitHub](https://img.shields.io/badge/GitHub-rafey581-2FFCB1?style=for-the-badge&logo=github&logoColor=black)](https://github.com/rafey581)
-[![Email](https://img.shields.io/badge/Email-Itsstranger581@gmail.com-E8B84B?style=for-the-badge&logo=gmail&logoColor=black)](mailto:Itsstranger581@gmail.com)
+[![Email](https://img.shields.io/badge/Email-itsrafey.official@gmail.com-E8B84B?style=for-the-badge&logo=gmail&logoColor=black)](mailto:itsrafey.official@gmail.com)
 [![Location](https://img.shields.io/badge/📍_Location-Sahiwal,_Punjab,_Pakistan-2FFCB1?style=for-the-badge)](https://rafey.me)
 
 </div>
@@ -246,7 +246,7 @@ rafey.me/
 | | |
 |---|---|
 | 🌐 **Website** | [rafey.me](https://rafey.me) |
-| 📧 **Email** | [Itsstranger581@gmail.com](mailto:Itsstranger581@gmail.com) |
+| 📧 **Email** | [itsrafey.official@gmail.com](mailto:itsrafey.official@gmail.com) |
 | 📞 **Phone** | +92 320 6912491 |
 | 💻 **GitHub** | [github.com/rafey581](https://github.com/rafey581) |
 | 📘 **Facebook** | [facebook.com/abdul.rafey.528316](https://facebook.com/abdul.rafey.528316) |
