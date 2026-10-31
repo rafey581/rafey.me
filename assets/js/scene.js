@@ -832,9 +832,9 @@ export async function createWorld({ canvas, sections, projects, skills, reducedM
     requestAnimationFrame(frame);
   }
 
-  // render a first frame so shaders compile behind the loader
-  renderer.compile(scene, camera);
-  requestAnimationFrame(frame);
+  // compile shaders in the background (parallel where supported) so the page
+  // stays responsive and the loader is never held up; rendering starts when ready
+  renderer.compileAsync(scene, camera).catch(() => {}).then(() => requestAnimationFrame(frame));
 
   await Promise.race([loaded, new Promise(r => setTimeout(r, 6000))]);
   onProgress && onProgress(1);

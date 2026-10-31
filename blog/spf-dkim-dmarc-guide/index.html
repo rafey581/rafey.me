@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>SPF, DKIM &amp; DMARC Explained: Stop Emails Going to Spam</title>
+  <meta name="description" content="A practical guide to SPF, DKIM and DMARC: what each record does, example DNS records, a safe rollout plan and how to check your domain." />
+  <link rel="canonical" href="https://rafey.me/blog/spf-dkim-dmarc-guide/" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="Abdul Rafey" />
+  <meta name="theme-color" content="#05070A" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Abdul Rafey" />
+  <meta property="og:title" content="SPF, DKIM &amp; DMARC Explained: Stop Emails Going to Spam" />
+  <meta property="og:description" content="A practical guide to SPF, DKIM and DMARC: what each record does, example DNS records, a safe rollout plan and how to check your domain." />
+  <meta property="og:url" content="https://rafey.me/blog/spf-dkim-dmarc-guide/" />
+  <meta property="og:image" content="https://rafey.me/assets/images/og-cover.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SPF, DKIM &amp; DMARC Explained: Stop Emails Going to Spam" />
+  <meta name="twitter:description" content="A practical guide to SPF, DKIM and DMARC: what each record does, example DNS records, a safe rollout plan and how to check your domain." />
+  <meta name="twitter:image" content="https://rafey.me/assets/images/og-cover.jpg" />
+  <link rel="icon" href="/assets/icons/logo.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/icons/icon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/page.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://rafey.me/blog/spf-dkim-dmarc-guide/#webpage",
+      "url": "https://rafey.me/blog/spf-dkim-dmarc-guide/",
+      "name": "SPF, DKIM & DMARC Explained: Stop Emails Going to Spam",
+      "description": "A practical guide to SPF, DKIM and DMARC: what each record does, example DNS records, a safe rollout plan and how to check your domain.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://rafey.me/#website"
+      },
+      "author": {
+        "@id": "https://rafey.me/#person"
+      },
+      "dateModified": "2026-10-31T00:00:00+05:00",
+      "breadcrumb": {
+        "@id": "https://rafey.me/blog/spf-dkim-dmarc-guide/#breadcrumb"
+      },
+      "primaryImageOfPage": "https://rafey.me/assets/images/og-cover.jpg"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://rafey.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://rafey.me/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "SPF, DKIM & DMARC Explained: How to Stop Your Emails Going to Spam",
+          "item": "https://rafey.me/blog/spf-dkim-dmarc-guide/"
+        }
+      ],
+      "@id": "https://rafey.me/blog/spf-dkim-dmarc-guide/#breadcrumb"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rafey.me/#website",
+      "url": "https://rafey.me/",
+      "name": "Abdul Rafey"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://rafey.me/#person",
+      "name": "Abdul Rafey",
+      "url": "https://rafey.me/",
+      "jobTitle": "Senior Developer & Cybersecurity Specialist",
+      "sameAs": [
+        "https://github.com/rafey581"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://rafey.me/blog/spf-dkim-dmarc-guide/#post",
+      "headline": "SPF, DKIM & DMARC Explained: How to Stop Your Emails Going to Spam",
+      "description": "A practical guide to SPF, DKIM and DMARC: what each record does, example DNS records, a safe rollout plan and how to check your domain.",
+      "datePublished": "2026-10-31T09:00:00+05:00",
+      "dateModified": "2026-10-31T09:00:00+05:00",
+      "author": {
+        "@id": "https://rafey.me/#person"
+      },
+      "publisher": {
+        "@id": "https://rafey.me/#person"
+      },
+      "image": "https://rafey.me/assets/images/og-cover.jpg",
+      "mainEntityOfPage": {
+        "@id": "https://rafey.me/blog/spf-dkim-dmarc-guide/#webpage"
+      },
+      "keywords": "SPF, DKIM, DMARC, email security, email deliverability, spam",
+      "inLanguage": "en"
+    }
+  ]
+}
+  </script>
+  <script src="/assets/js/page.js" defer></script>
+</head>
+<body class="page">
+  <nav class="nav">
+    <a href="/" class="nav-logo">AR<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <a href="mailto:itsrafey.official@gmail.com" class="nav-cta"><span>Hire Me</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" class="mob-link">Home</a>
+    <a href="/#projects" class="mob-link">Projects</a>
+    <a href="/#services" class="mob-link">Services</a>
+    <a href="/blog/" class="mob-link">Blog</a>
+    <a href="/#contact" class="mob-link">Contact</a>
+  </div>
+  <main class="page-main">
+    <div class="wrap narrow">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/blog/">Blog</a></li><li><span aria-current="page">SPF, DKIM &amp; DMARC Explained: How to Stop Your Emails Going to Spam</span></li></ol></nav>
+      <header class="page-hero">
+        <p class="eyebrow">Blog · Cybersecurity</p>
+        <h1>SPF, DKIM &amp; DMARC Explained: How to Stop Your Emails Going to Spam</h1>
+        <p class="lead">If your business emails land in spam — or criminals send fake emails “from” your domain — these three DNS records are the fix. Here is what each one does and how to set them up safely.</p>
+        <div class="meta-row"><span>By <b>Abdul Rafey</b></span><span><time datetime="2026-10-31">31 October 2026</time></span></div>
+      </header>
+      <article class="article">
+        <h2>Why this matters now</h2>
+        <p>Email was never designed to prove who sent a message. Anyone can put <code>ceo@yourcompany.com</code> in the From line. To fight spoofing and spam, mailbox providers check three DNS records on your domain — and since 2024 Gmail and Yahoo require them from bulk senders, while unauthenticated mail from smaller senders is increasingly filtered too.</p>
+        <h2>SPF — who is allowed to send</h2>
+        <p><strong>SPF (Sender Policy Framework)</strong> is a TXT record listing the servers allowed to send email for your domain. For a domain that sends through Google Workspace:</p>
+        <pre><code>Type: TXT   Name: @
+v=spf1 include:_spf.google.com ~all</code></pre>
+        <ul>
+          <li>Add an <code>include:</code> for every service that sends as you (your email provider, newsletter tool, CRM, invoicing app).</li>
+          <li>A domain must have <strong>only one</strong> SPF record — merge them instead of adding a second.</li>
+          <li>SPF allows at most 10 DNS lookups; too many includes make the whole record fail.</li>
+          <li><code>~all</code> (soft fail) is a safe start; <code>-all</code> rejects everything not listed.</li>
+        </ul>
+        <h2>DKIM — a tamper-proof signature</h2>
+        <p><strong>DKIM (DomainKeys Identified Mail)</strong> adds a cryptographic signature to every message. Your provider signs mail with a private key; receivers check it against a public key you publish in DNS. If the message was altered in transit, the check fails.</p>
+        <pre><code>Type: TXT   Name: google._domainkey
+v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A...</code></pre>
+        <p>You do not write this record yourself: generate it in your email provider’s admin console (for Google Workspace: Admin → Apps → Gmail → Authenticate email), publish it, then switch signing on. Use 2048-bit keys where offered.</p>
+        <h2>DMARC — the policy that ties it together</h2>
+        <p><strong>DMARC</strong> tells receivers what to do when a message fails SPF and DKIM <em>alignment</em> — meaning the domain that passed must match the domain in the visible From address — and where to send reports.</p>
+        <pre><code>Type: TXT   Name: _dmarc
+v=DMARC1; p=none; rua=mailto:dmarc-reports@yourcompany.com</code></pre>
+        <h2>A safe rollout plan</h2>
+        <ol>
+          <li><strong>Inventory</strong> every service that sends email as your domain.</li>
+          <li><strong>Publish SPF and enable DKIM</strong> for each of them.</li>
+          <li><strong>Start DMARC at <code>p=none</code></strong> — monitoring only — and read the aggregate reports for two to four weeks.</li>
+          <li><strong>Fix</strong> any legitimate sender that fails.</li>
+          <li><strong>Tighten</strong> to <code>p=quarantine</code> (failures go to spam), then <code>p=reject</code> (failures are blocked).</li>
+        </ol>
+        <div class="callout">Jumping straight to <code>p=reject</code> can block your own invoices or newsletters. Monitor first, enforce second.</div>
+        <h2>Gmail and Yahoo bulk-sender rules</h2>
+        <p>If you send large volumes to personal Gmail or Yahoo inboxes (Google’s line is around 5,000 messages a day), you must authenticate with SPF and DKIM, publish DMARC with alignment, offer one-click unsubscribe in marketing mail, and keep spam complaints below 0.3%. Below that volume the rules are softer — but authenticated mail still lands in the inbox far more reliably.</p>
+        <h2>How to check your domain</h2>
+        <pre><code>dig +short TXT yourcompany.com
+dig +short TXT _dmarc.yourcompany.com
+dig +short TXT google._domainkey.yourcompany.com</code></pre>
+        <p>In Gmail you can also open any message you sent, choose <strong>Show original</strong>, and confirm SPF, DKIM and DMARC all say <code>PASS</code>.</p>
+        <p>Setting this up is part of my <a href="/services/website-security-audit/">website security audit</a> — I can configure and verify all three records for you.</p>
+        <p><em>Written by Abdul Rafey — senior developer, penetration tester and cybersecurity specialist (Harvard CS50 Cybersecurity) based in Sahiwal, Pakistan.</em></p>
+      </article>
+      <section class="cta glass">
+        <h2>Want me to check your website?</h2>
+        <p>I can review this for you and fix what is missing.</p>
+        <a class="btn btn-primary" href="mailto:itsrafey.official@gmail.com?subject=Security%20check"><span>Email me →</span></a>
+        <a class="btn btn-ghost" href="https://wa.link/kceoyh" target="_blank" rel="noopener"><span>WhatsApp</span></a>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a href="/" class="footer-logo">Abdul Rafey<span>.</span></a>
+      <p>© <span id="year">2026</span> Abdul Rafey — Senior Developer &amp; Cybersecurity Specialist in Sahiwal, Punjab, Pakistan</p>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/">Home</a><a href="/projects/finance-management-software/">Finance Software</a><a href="/projects/fitx-3d-gym-website/">FitX 3D Website</a>
+        <a href="/services/penetration-testing/">Penetration Testing</a><a href="/services/web-development/">Web Development</a><a href="/services/website-security-audit/">Security Audit</a>
+        <a href="/blog/">Blog</a><a href="https://github.com/rafey581" target="_blank" rel="noopener me">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -58,11 +58,21 @@ $$('[data-split]').forEach(el => {
 const chars = $$('.hero-name .ch');
 
 // ── Boot sequence ───────────────────────────────────────
-let world = null;
+// The page is revealed as soon as the short boot log finishes; the 3D world
+// keeps loading behind it and flies in when ready (keeps LCP fast on slow phones).
+let world = null, booted = false;
 (async () => {
-  const fonts = Promise.race([document.fonts.ready, wait(2500)]);
   const typing = typeBoot();
-  await fonts;
+  const worldReady = initWorld();
+  await typing;
+  await Promise.race([worldReady, wait(600)]);
+  realProgress = 1; setBar();
+  await wait(120);
+  finishBoot();
+})();
+
+async function initWorld() {
+  await Promise.race([document.fonts.ready, wait(2500)]); // sprite labels need the fonts
   try {
     const { createWorld } = await import('./scene.js');
     world = await createWorld({
@@ -70,18 +80,16 @@ let world = null;
       onProgress: p => { realProgress = p; setBar(); },
     });
     wireWorld();
+    if (booted) world.start();
   } catch (err) {
     console.warn('[rafey.me] WebGL disabled:', err);
     body.classList.add('no-webgl');
     $('#webgl').style.display = 'none';
   }
-  realProgress = 1;
-  await typing; setBar();
-  await wait(120);
-  finishBoot();
-})();
+}
 
 function finishBoot() {
+  booted = true;
   const loader = $('#loader');
   loader.classList.add('done');
   body.classList.remove('is-loading');
@@ -112,9 +120,9 @@ function wireWorld() {
   });
 }
 
-// mailto: links (demo requests) open the mail client instead of a blank tab
+// mailto: and on-site links (case studies) open in place; external demos in a new tab
 function openProject(url) {
-  if (url.startsWith('mailto:')) location.href = url;
+  if (url.startsWith('mailto:') || new URL(url, location.href).origin === location.origin) location.href = url;
   else window.open(url, '_blank', 'noopener');
 }
 

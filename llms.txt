@@ -1,0 +1,21 @@
+# Abdul Rafey
+
+> Senior developer, penetration tester and cybersecurity specialist based in Sahiwal, Punjab, Pakistan. Harvard CS50x and CS50 Cybersecurity certified. Builds secure full-stack web applications, management software and immersive 3D (Three.js/WebGL) websites, and performs penetration tests and website security audits for clients in Pakistan and worldwide.
+
+Contact: itsrafey.official@gmail.com · +92 320 6912491 · https://github.com/rafey581
+
+## Projects
+- [Finance Management Software](https://rafey.me/projects/finance-management-software/): finance and operations platform for schools, colleges, hospitals and gyms — income, expenses, profit, members, staff, fees, payments, inventory and reports.
+- [FitX 3D Gym Website & Admin Panel](https://rafey.me/projects/fitx-3d-gym-website/): immersive Three.js website for FitX Fitness Studio, Sahiwal, with an admin panel for blogs and photos and a visitor chatbot.
+
+## Services
+- [Penetration Testing](https://rafey.me/services/penetration-testing/): authorised, OWASP-based testing of websites, web apps and APIs with a severity-rated report and retest.
+- [Secure Web Development](https://rafey.me/services/web-development/): custom websites, web apps, dashboards and 3D websites, built secure, fast and SEO-ready.
+- [Website Security Audit](https://rafey.me/services/website-security-audit/): OWASP Top 10, security headers, TLS, authentication, exposed files, outdated software and email authentication.
+
+## Articles
+- [SPF, DKIM & DMARC Explained](https://rafey.me/blog/spf-dkim-dmarc-guide/): how to stop business emails going to spam and prevent spoofing.
+- [OWASP Top 10:2025 Checklist](https://rafey.me/blog/owasp-top-10-checklist/): the 2025 list in plain language with practical checks.
+
+## Optional
+- [Portfolio home](https://rafey.me/): full profile, certifications, skills and all projects.

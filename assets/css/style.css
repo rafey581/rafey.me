@@ -371,3 +371,6 @@ main, .footer, .nav, .hud, .mobile-menu { position: relative; z-index: 2; }
 .footer-nav { display: flex; flex-wrap: wrap; gap: 4px 10px; width: 100%; order: 3; margin-left: -10px; }
 .footer-nav a { display: inline-block; padding: 8px 10px; min-height: 32px; font: 500 12px var(--mono); color: var(--muted); letter-spacing: .06em; }
 .footer-nav a:hover { color: var(--gold); }
+
+.s-more { display: inline-block; margin-top: 12px; font: 600 11.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.s-more:hover { color: var(--teal); }

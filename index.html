@@ -66,8 +66,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="modulepreload" href="/assets/js/main.js" />
-  <link rel="modulepreload" href="/assets/js/scene.js" />
-  <link rel="modulepreload" href="/assets/vendor/three/build/three.module.min.js" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <!-- ── Structured data: one linked graph ─────────────────
@@ -99,7 +97,7 @@
         "mainEntity": { "@id": "https://rafey.me/#person" },
         "primaryImageOfPage": { "@id": "https://rafey.me/#cover" },
         "dateCreated": "2025-01-01T00:00:00+05:00",
-        "dateModified": "2026-10-30T00:00:00+05:00"
+        "dateModified": "2026-10-31T00:00:00+05:00"
       },
       {
         "@type": "ImageObject",
@@ -215,6 +213,7 @@
           "@type": "OfferCatalog",
           "name": "Web Development & Cybersecurity Services",
           "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Penetration Testing", "url": "https://rafey.me/services/penetration-testing/", "description": "Authorised, OWASP-based penetration testing of websites, web apps and APIs with a severity-rated report, fixes and retest." } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Secure Web Development", "description": "Modern, fully responsive web applications built with security-first architecture, from landing pages to full-stack platforms." } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website Security & Vulnerability Assessment", "description": "Security audits covering XSS, SQL injection, broken authentication and misconfigured access controls." } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Secure Authentication Systems", "description": "Robust login flows, session management and access control models (MAC, DAC, RBAC)." } },
@@ -303,6 +302,7 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="/blog/">Blog</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="mailto:itsrafey.official@gmail.com" class="nav-cta" data-magnetic><span>Hire Me</span></a>
@@ -314,6 +314,7 @@
     <a href="#skills" class="mob-link">Skills</a>
     <a href="#projects" class="mob-link">Projects</a>
     <a href="#services" class="mob-link">Services</a>
+    <a href="/blog/" class="mob-link">Blog</a>
     <a href="#contact" class="mob-link">Contact</a>
   </div>
 
@@ -533,7 +534,7 @@
             <p class="p-tags"><span>Full-Stack</span><span>Analytics Dashboard</span><span>Financial Reporting</span><span>Admin Roles</span></p>
             <p class="p-desc">A complete finance and operations platform for schools, colleges, hospitals and gyms. Tracks income, expenses and profit in real time, and manages members, staff, monthly fees, additional charges, payments and inventory — with reports for any date range.</p>
             <ul class="p-points"><li>Live KPI dashboard: income, expenses, profit and members with date-range filters</li><li>Fee generation, payment records and outstanding-bill tracking</li><li>Expense, inventory and full financial reports</li></ul>
-            <p class="p-links"><a href="mailto:itsrafey.official@gmail.com?subject=Finance%20Management%20Software%20demo">Request a Demo ↗</a></p>
+            <p class="p-links"><a href="/projects/finance-management-software/">Case Study →</a><a href="mailto:itsrafey.official@gmail.com?subject=Finance%20Management%20Software%20demo">Request a Demo ↗</a></p>
           </li>
           <li class="project" data-tex="/assets/tex/fitx.webp">
             <span class="p-num">02</span>
@@ -541,7 +542,7 @@
             <p class="p-tags"><span>Three.js · WebGL</span><span>Admin Panel / CMS</span><span>Chatbot</span><span>Full-Stack</span></p>
             <p class="p-desc">An immersive 3D website for FitX Fitness Studio in Sahiwal, powered by a custom admin panel and a chatbot. Staff publish blogs, photos and site content from the dashboard, while the chatbot answers visitors' questions around the clock.</p>
             <ul class="p-points"><li>Scroll-driven 3D experience built with Three.js and WebGL</li><li>Admin panel for uploading blogs, photos and other site data</li><li>Chatbot answering questions about memberships, timings and training</li></ul>
-            <p class="p-links"><a href="mailto:itsrafey.official@gmail.com?subject=FitX%203D%20website%20demo">Request a Demo ↗</a></p>
+            <p class="p-links"><a href="/projects/fitx-3d-gym-website/">Case Study →</a><a href="mailto:itsrafey.official@gmail.com?subject=FitX%203D%20website%20demo">Request a Demo ↗</a></p>
           </li>
           <li class="project" data-tex="emart">
             <span class="p-num">03</span>
@@ -609,8 +610,9 @@
         <p class="eyebrow">05 — Offerings</p>
         <h2 class="title" data-scramble>What I Deliver</h2>
         <div class="service-grid">
-          <article class="service glass tilt reveal"><i class="s-icon">⟨/⟩</i><h3>Secure Web Development</h3><p>Modern, fully responsive web applications built with security-first architecture. Clean code, optimized performance, and scalable structure — from landing pages to full-stack platforms.</p></article>
-          <article class="service glass tilt reveal"><i class="s-icon">⛨</i><h3>Website Security &amp; Vulnerability Assessment</h3><p>Systematic security audits to identify and remediate vulnerabilities in existing web applications. Covers XSS, SQL injection, broken authentication, and misconfigured access controls.</p></article>
+          <article class="service glass tilt reveal"><i class="s-icon">⌖</i><h3>Penetration Testing</h3><p>Authorised, OWASP-based testing of websites, web apps and APIs — I attack your application like a real adversary, then deliver a severity-rated report with fixes and a free retest.</p><a class="s-more" href="/services/penetration-testing/">Learn more →</a></article>
+          <article class="service glass tilt reveal"><i class="s-icon">⟨/⟩</i><h3>Secure Web Development</h3><p>Modern, fully responsive web applications built with security-first architecture. Clean code, optimized performance, and scalable structure — from landing pages to full-stack platforms.</p><a class="s-more" href="/services/web-development/">Learn more →</a></article>
+          <article class="service glass tilt reveal"><i class="s-icon">⛨</i><h3>Website Security &amp; Vulnerability Assessment</h3><p>Systematic security audits to identify and remediate vulnerabilities in existing web applications. Covers XSS, SQL injection, broken authentication, and misconfigured access controls.</p><a class="s-more" href="/services/website-security-audit/">Learn more →</a></article>
           <article class="service glass tilt reveal"><i class="s-icon">⊛</i><h3>Secure Authentication Systems</h3><p>Implementation of robust login flows, session management, and access control models (MAC, DAC, RBAC). Protect user data and enforce the principle of least privilege across your application.</p></article>
           <article class="service glass tilt reveal"><i class="s-icon">◎</i><h3>Performance Optimization &amp; SEO</h3><p>End-to-end performance audits, Core Web Vitals improvement, structured data implementation, and on-page SEO — ensuring your site ranks well and loads fast on every device.</p></article>
           <article class="service glass tilt reveal"><i class="s-icon">✉</i><h3>Email Security &amp; Spam Prevention</h3><p>Configure SPF, DKIM, and DMARC DNS records so your emails land in the inbox — not the spam folder. Includes domain reputation analysis, email header inspection, and deliverability optimization.</p></article>
@@ -691,7 +693,7 @@
     <div class="wrap footer-inner">
       <div class="footer-logo">Abdul Rafey<span>.</span></div>
       <p>© <span id="year">2025</span> Abdul Rafey — Web Developer &amp; Cybersecurity Specialist in Sahiwal, Punjab, Pakistan · Built with Three.js &amp; raw WebGL shaders</p>
-      <nav class="footer-nav" aria-label="Footer"><a href="#about">About</a><a href="#certifications">Certifications</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="https://github.com/rafey581" target="_blank" rel="noopener me">GitHub</a></nav>
+      <nav class="footer-nav" aria-label="Footer"><a href="#about">About</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="/projects/finance-management-software/">Finance Software</a><a href="/projects/fitx-3d-gym-website/">FitX 3D Website</a><a href="/services/penetration-testing/">Penetration Testing</a><a href="/services/web-development/">Web Development</a><a href="/services/website-security-audit/">Security Audit</a><a href="/blog/">Blog</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="https://github.com/rafey581" target="_blank" rel="noopener me">GitHub</a></nav>
       <a href="#hero" class="back-top" data-magnetic>↑ Return to core</a>
     </div>
   </footer>
