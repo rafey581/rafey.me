@@ -107,9 +107,15 @@ function wireWorld() {
   });
   world.on('skillHover', i => skillEls.forEach((li, k) => li.classList.toggle('hot', k === i)));
   world.on('cardClick', i => {
-    if (i === activeProject) window.open(projects[i].url, '_blank', 'noopener');
+    if (i === activeProject) openProject(projects[i].url);
     else goToProject(i);
   });
+}
+
+// mailto: links (demo requests) open the mail client instead of a blank tab
+function openProject(url) {
+  if (url.startsWith('mailto:')) location.href = url;
+  else window.open(url, '_blank', 'noopener');
 }
 
 // ── Cursor ──────────────────────────────────────────────
@@ -178,7 +184,7 @@ if (fine && !reducedMotion) {
 
 // ── Typing role line ────────────────────────────────────
 function startTyping() {
-  const roles = ['Harvard CS50 certified', 'Security-first engineer', 'Building secure web apps', 'Open to freelance work'];
+  const roles = ['Senior developer & problem solver', 'Penetration tester', 'Cloud & DevSecOps', 'Harvard CS50 certified', 'Open to freelance work'];
   const el = $('#typeRole');
   let i = 0;
   (async function cycle() {
@@ -317,6 +323,7 @@ $('#contactForm').addEventListener('submit', e => {
 });
 
 $('#year').textContent = new Date().getFullYear();
+$('#projTotal').textContent = String(projects.length).padStart(2, '0');
 
 // ── Terminal easter egg ─────────────────────────────────
 const term = $('#term'), out = $('#termOut'), input = $('#termIn');
@@ -334,12 +341,12 @@ const commands = {
   pulse       poke the core
   sudo hire-rafey
   clear · exit`),
-  whoami: () => print('<span class="t">Abdul Rafey</span> — Web Developer & Cybersecurity Specialist · Sahiwal, Pakistan · Harvard CS50x + CS50 Cybersecurity'),
+  whoami: () => print('<span class="t">Abdul Rafey</span> — Senior Developer, Pentester & Cybersecurity Specialist · Sahiwal, Pakistan · Harvard CS50x + CS50 Cybersecurity'),
   skills: () => print(skills.map(s => `  <span class="${s.group === 'sec' ? 't' : 'c'}">▹</span> ${esc(s.name)}`).join('\n')),
   projects: () => print(projectEls.map((li, i) => `  <span class="c">${i + 1}</span>  ${esc(li.querySelector('h3').textContent)}`).join('\n') + '\n  → type <span class="t">open 3</span>'),
   certs: () => print($$('.cert h3').map(h => '  ✓ ' + esc(h.textContent)).join('\n')),
   contact: () => print('  email  <span class="t">itsrafey.official@gmail.com</span>\n  phone  +92 320 6912491\n  github github.com/rafey581'),
-  open: n => { const p = projects[+n - 1]; if (p) { print('  launching ' + esc(p.url)); window.open(p.url, '_blank', 'noopener'); } else print('<span class="r">  usage: open 1-7</span>'); },
+  open: n => { const p = projects[+n - 1]; if (p) { print('  launching ' + esc(p.url)); openProject(p.url); } else print(`<span class="r">  usage: open 1-${projects.length}</span>`); },
   goto: s => { const el = s && document.getElementById(s); if (el) { toggleTerm(false); window.scrollTo({ top: el.offsetTop, behavior: 'smooth' }); } else print('<span class="r">  unknown section</span>'); },
   pulse: () => { world && world.pulse(); print('  <span class="t">core destabilised ⚡</span>'); },
   sudo: a => a === 'hire-rafey'

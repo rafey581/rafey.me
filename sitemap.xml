@@ -4,10 +4,12 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://rafey.me/</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <image:image><image:loc>https://rafey.me/assets/images/og-cover.jpg</image:loc></image:image>
     <image:image><image:loc>https://rafey.me/assets/images/personal.png</image:loc></image:image>
     <image:image><image:loc>https://rafey.me/assets/images/abdul-rafey.webp</image:loc></image:image>
+    <image:image><image:loc>https://rafey.me/assets/tex/finance.webp</image:loc></image:image>
+    <image:image><image:loc>https://rafey.me/assets/tex/fitx.webp</image:loc></image:image>
     <image:image><image:loc>https://rafey.me/assets/tex/amazon.webp</image:loc></image:image>
     <image:image><image:loc>https://rafey.me/assets/tex/blog-world.webp</image:loc></image:image>
     <image:image><image:loc>https://rafey.me/assets/tex/samsung.webp</image:loc></image:image>

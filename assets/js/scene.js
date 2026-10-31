@@ -375,7 +375,10 @@ export async function createWorld({ canvas, sections, projects, skills, reducedM
     skills.forEach((sk, i) => {
       const c = document.createElement('canvas'); c.width = 512; c.height = 128;
       const x = c.getContext('2d');
-      x.font = '700 58px Syne, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
+      // shrink long labels so they always fit the sprite
+      let fs = 58; x.font = `700 ${fs}px Syne, sans-serif`;
+      while (x.measureText(sk.name).width > 480 && fs > 26) { fs -= 2; x.font = `700 ${fs}px Syne, sans-serif`; }
+      x.textAlign = 'center'; x.textBaseline = 'middle';
       x.shadowColor = groupColor[sk.group]; x.shadowBlur = 18;
       x.fillStyle = groupColor[sk.group]; x.fillText(sk.name, 256, 66);
       const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
@@ -416,10 +419,10 @@ export async function createWorld({ canvas, sections, projects, skills, reducedM
   const carousel = new THREE.Group();
   scene.add(carousel);
   const cards = [];
-  const CR = 8.2;
+  const CR = 9.4; // ring radius — sized for 9 cards
   const step = TAU / projects.length;
   {
-    const geo = new THREE.PlaneGeometry(4.8, 3, 40, 24);
+    const geo = new THREE.PlaneGeometry(4.4, 2.75, 40, 24);
     projects.forEach((p, i) => {
       const tex = p.tex.startsWith('/') ? texLoader.load(p.tex) : proceduralTexture(p.tex);
       tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
@@ -449,9 +452,10 @@ export async function createWorld({ canvas, sections, projects, skills, reducedM
             float lum = dot(c, vec3(0.299, 0.587, 0.114));
             vec3 duo = mix(vec3(0.02, 0.05, 0.07), uTeal, lum) * 0.55;
             c = mix(duo, c, uActive * 0.85 + uHover * 0.15) * (0.32 + uActive * 0.36);
+            c = c / (1.0 + c * 0.6); // soft highlight roll-off so white UIs don't bloom out
             float scan = sin(uv.y * 380.0 + uTime * 4.0) * 0.04 * (1.0 - uActive);
             c += scan;
-            vec2 e = min(uv, 1.0 - uv); float edge = min(e.x * 4.8 / 3.0, e.y);
+            vec2 e = min(uv, 1.0 - uv); float edge = min(e.x * 1.6, e.y);
             float border = smoothstep(0.012, 0.0, edge);
             float sweep = smoothstep(0.03, 0.0, abs(uv.x + uv.y * 0.3 - mod(uTime * 0.35, 2.0) + 0.3)) * uActive;
             c += mix(uTeal, uGold, uActive) * border * (0.6 + uActive * 1.2) + sweep * 0.25;
@@ -469,7 +473,7 @@ export async function createWorld({ canvas, sections, projects, skills, reducedM
     });
     // floor reflection ring
     const ring = new THREE.Mesh(new THREE.RingGeometry(CR - 0.02, CR + 0.02, 160), new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.4, side: THREE.DoubleSide }));
-    ring.rotation.x = -Math.PI / 2; ring.position.y = -1.9;
+    ring.rotation.x = -Math.PI / 2; ring.position.y = -1.75;
     const ring2 = ring.clone(); ring2.scale.setScalar(0.7); ring2.material = ring.material.clone(); ring2.material.color = TEAL; ring2.material.opacity = 0.2;
     carousel.add(ring, ring2);
   }
@@ -603,7 +607,7 @@ export async function createWorld({ canvas, sections, projects, skills, reducedM
 
     core.position.set(3.4 * sx, mobile ? 2.4 : 0, mobile ? -4 : 0);
     objects.forEach(o => o.scale.setScalar(1));
-    core.scale.setScalar(mobile ? 0.8 : 1);
+    core.scale.setScalar(mobile ? 0.72 : 0.86);
     helix.position.set(mobile ? 2.6 : 5.2, 0, -50);
     lock.position.set(5 * sx, mobile ? 3 : 1.2, mobile ? -108 : -100);
     lockParts.baseY = lock.position.y;

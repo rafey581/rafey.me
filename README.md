@@ -27,7 +27,7 @@
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║   7 Projects  ·  4 Certifications  ·  2 Specializations     ║
+║   9 Projects  ·  4 Certifications  ·  2 Specializations     ║
 ╚══════════════════════════════════════════════════════════════╝
 ```
 
@@ -112,9 +112,9 @@ TYPOGRAPHY
 | 02 | **Marquee** | Scrolling tech stack banner |
 | 03 | **About** | Bio, experience cards, detail grid |
 | 04 | **Certifications** | Certified + In Progress with View buttons |
-| 05 | **Skills** | Web Dev · Backend · Cybersecurity categories with progress bars |
+| 05 | **Capabilities** | Engineering · Security · Cloud, with an interactive 3D skill sphere |
 | 06 | **Services** | 8 service cards with hover effects |
-| 07 | **Projects** | Accordion list, 7 projects with full stack details |
+| 07 | **Projects** | Pinned 3D carousel of 9 projects with details panel |
 | 08 | **Contact** | Split-grid contact form |
 | 09 | **Footer** | Links, social, copyright |
 
@@ -123,19 +123,21 @@ TYPOGRAPHY
 ## ◈ Projects
 
 <details>
-<summary><b>Click to expand all 7 projects</b></summary>
+<summary><b>Click to expand all 9 projects</b></summary>
 
 <br>
 
 | # | Project | Stack |
 |---|---|---|
-| 01 | **E-Mart** — Full e-commerce platform | HTML · Tailwind · JS · LocalStorage · Figma |
-| 02 | **Intent vs Reality** — CS50 Final Project | Python · Flask · SQLite · JS · Chart.js |
-| 03 | **Amazon Clone** — Frontend replica | HTML · CSS |
-| 04 | **Samsung Website Clone** | HTML · CSS |
-| 05 | **Tic Tac Toe** — Interactive game | HTML · CSS · JS |
-| 06 | **Blog World** — SEO-optimized blog | HTML · CSS · SEO |
-| 07 | **Rock Paper Scissors** — Game with logic | HTML · CSS · JS |
+| 01 | **Finance Management Software** — income, expenses, profit, fees, inventory & reports for schools, colleges, hospitals, gyms | Full-Stack · Dashboard · Reporting |
+| 02 | **FitX** — 3D gym website with admin panel (blogs, photos, data) and chatbot | Three.js · WebGL · CMS · Chatbot |
+| 03 | **E-Mart** — Full e-commerce platform | HTML · Tailwind · JS · LocalStorage · Figma |
+| 04 | **Intent vs Reality** — CS50 Final Project | Python · Flask · SQLite · JS · Chart.js |
+| 05 | **Amazon Clone** — Frontend replica | HTML · CSS |
+| 06 | **Samsung Website Clone** | HTML · CSS |
+| 07 | **Tic Tac Toe** — Interactive game | HTML · CSS · JS |
+| 08 | **Blog World** — SEO-optimized blog | HTML · CSS · SEO |
+| 09 | **Rock Paper Scissors** — Game with logic | HTML · CSS · JS |
 
 </details>
 
