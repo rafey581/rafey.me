@@ -1,0 +1,11 @@
+# Never upload repo internals — only the public site is served.
+.git
+.github
+.wrangler
+node_modules
+docs
+README.md
+wrangler.jsonc
+.assetsignore
+.nojekyll
+.gitignore

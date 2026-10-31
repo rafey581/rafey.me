@@ -215,7 +215,7 @@ Lighthouse (desktop & mobile): **SEO 100 · Accessibility 100 · Best Practices 
 ✦ 1200×630 social preview card (Open Graph + X/Twitter)
 ✦ Full icon set (SVG, 32, 180, 192, 512, maskable) + PWA manifest
 ✦ Clean robots.txt · image sitemap · noindex 404 page
-✦ /.well-known/security.txt (RFC 9116) · .nojekyll for GitHub Pages
+✦ /.well-known/security.txt (RFC 9116)
 ✦ Real text in the DOM for crawlers — the 3D layer is progressive
 ```
 
@@ -223,9 +223,9 @@ Lighthouse (desktop & mobile): **SEO 100 · Accessibility 100 · Best Practices 
 
 ## ◈ Hosting
 
-AWS: private S3 bucket → CloudFront (HTTPS, HTTP/3, strict security headers) → Route 53.
-Every push to `main` deploys via GitHub Actions with OIDC (no stored AWS keys).
-Setup guide: [docs/DEPLOY-AWS.md](docs/DEPLOY-AWS.md).
+Cloudflare Workers (static assets) — free, global edge network, automatic HTTPS.
+Every push to `main` deploys via Cloudflare's GitHub integration.
+Security headers live in `_headers`; setup checklist: [docs/DEPLOY-CLOUDFLARE.md](docs/DEPLOY-CLOUDFLARE.md).
 
 ---
 
@@ -234,9 +234,10 @@ Setup guide: [docs/DEPLOY-AWS.md](docs/DEPLOY-AWS.md).
 ```
 rafey.me/
 ├── index.html              ← Main portfolio (markup + SEO)
-├── infra/aws/site.yml      ← AWS stack: S3 + CloudFront + ACM + Route 53 + deploy role
-├── .github/workflows/      ← deploy-aws.yml — auto-deploy on push to main
-├── docs/DEPLOY-AWS.md      ← Step-by-step hosting guide
+├── wrangler.jsonc          ← Cloudflare Worker config (static assets, 404 page)
+├── _headers                ← Security + cache headers
+├── .assetsignore           ← Files never uploaded to Cloudflare
+├── docs/DEPLOY-CLOUDFLARE.md ← Hosting checklist
 ├── assets/css/style.css    ← UI styles
 ├── assets/js/main.js       ← UI layer: loader, cursor, scroll, terminal
 ├── assets/js/scene.js      ← Three.js world + shaders
