@@ -374,3 +374,14 @@ main, .footer, .nav, .hud, .mobile-menu { position: relative; z-index: 2; }
 
 .s-more { display: inline-block; margin-top: 12px; font: 600 11.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 .s-more:hover { color: var(--teal); }
+
+/* Profile photo: teal→gold holographic duotone; hover reveals true colour */
+.id-photo { isolation: isolate; }
+.id-photo img { filter: grayscale(1) contrast(1.18) brightness(1.06); transition: filter .6s var(--ease); }
+.id-photo::after, .id-photo::before { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; transition: opacity .6s var(--ease); }
+.id-photo::after { z-index: 1; background: linear-gradient(165deg, var(--teal) 0%, #0e4a46 48%, var(--gold) 100%); mix-blend-mode: color; opacity: .9; }
+.id-photo::before { z-index: 2; background: repeating-linear-gradient(0deg, rgba(47,252,177,.16) 0 1px, transparent 1px 3px); mix-blend-mode: screen; animation: idScan 6s linear infinite; }
+@keyframes idScan { to { background-position: 0 60px; } }
+.id-card:hover .id-photo img { filter: none; }
+.id-card:hover .id-photo::after { opacity: .12; }
+.id-card:hover .id-photo::before { opacity: .35; }
