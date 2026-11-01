@@ -419,7 +419,7 @@ export async function createWorld({ canvas, sections, projects, skills, reducedM
   const carousel = new THREE.Group();
   scene.add(carousel);
   const cards = [];
-  const CR = 9.4; // ring radius — sized for 9 cards
+  const CR = Math.max(5.6, projects.length * 1.05); // ring radius scales with the number of cards
   const step = TAU / projects.length;
   {
     const geo = new THREE.PlaneGeometry(4.4, 2.75, 40, 24);

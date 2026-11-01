@@ -256,7 +256,7 @@ main, .footer, .nav, .hud, .mobile-menu { position: relative; z-index: 2; }
 @media (max-width: 520px) { .skill-list { grid-template-columns: 1fr; } }
 
 /* ── Projects (pinned) ───────────────────────────────── */
-#projects { height: 880vh; padding: 0; }
+#projects { height: 460vh; padding: 0; }
 #projects .pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; padding-top: 110px; }
 .proj-head .title { margin-bottom: 0; font-size: clamp(26px, 3vw, 44px); }
 .project-list { list-style: none; position: absolute; left: var(--gutter); bottom: 72px; width: min(420px, calc(100% - 2 * var(--gutter))); }
@@ -280,7 +280,7 @@ main, .footer, .nav, .hud, .mobile-menu { position: relative; z-index: 2; }
 .proj-arrow { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: rgba(8,12,16,.5); backdrop-filter: blur(8px); font-size: 18px; transition: border-color .3s, color .3s; }
 .proj-arrow:hover { border-color: var(--gold); color: var(--gold); }
 @media (max-width: 900px) {
-  #projects { height: 760vh; }
+  #projects { height: 400vh; }
   .project-list { bottom: 92px; }
   .project { padding: 16px; }
   .p-points { display: none; }
